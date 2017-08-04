@@ -179,6 +179,8 @@ function push(obj){
 function Divide(str,Pct) {
   var Reg = new RegExp(Pct,'g');
   var Pos =-1;
+  var LeftStr = undefined;
+  var RightStr = undefined;
 
   while (str.search(Reg)!==-1) {
 
@@ -186,8 +188,6 @@ function Divide(str,Pct) {
     var SqtRightNum = 0;
     var DqtLeftNum = 0;
     var DqtRightNum = 0;
-    var LeftStr = undefined;
-    var RightStr = undefined;
 
     Pos = str.search(Reg);
     LeftStr = str.slice(0,Pos);
@@ -195,15 +195,23 @@ function Divide(str,Pct) {
 
     if (LeftStr.match(/'/g)!==null) {
       SqtLeftNum = LeftStr.match(/'/g).length;
+    } else {
+      SqtLeftNum = 0;
     }
     if (RightStr.match(/'/g)!==null) {
       SqtRightNum = RightStr.match(/'/g).length;
+    } else {
+      SqtRightNum = 0;
     }
     if (LeftStr.match(/"/g)!==null) {
       DqtLeftNum = LeftStr.match(/"/g).length;
+    } else {
+      DqtLeftNum = 0;
     }
     if (RightStr.match(/"/g)!==null) {
       DqtRightNum = RightStr.match(/"/g).length;
+    } else {
+      DqtRightNum = 0;
     }
     //"'"的情况未考虑
     if (SqtLeftNum%2===0 && SqtRightNum%2===0 && DqtLeftNum%2===0 && DqtRightNum%2===0) {
