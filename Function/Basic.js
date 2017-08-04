@@ -132,13 +132,13 @@ function throwerror(str,No) {
 
   switch (No) {
     case 1:{
-      alert('error:无此组件 做字符串处理');
+      console.log('error:'+str+'组件不存在 做字符串处理');
       obj.varType = "string";
       obj.varContent = "@"+str;
       break;
     }
     case 2:{
-      alert('error:无此全局变量 做字符串处理');
+      console.log('error:'+str+'变量不存在 做字符串处理');
       obj.varType = "string";
       obj.varContent = str;
       break;
@@ -173,4 +173,43 @@ function push(obj){
       default: break;
     }
   }
+}
+
+//-----------------------------------------------------= Get函数 =-----------------------------------------
+function Divide(str,Pct) {
+  var Reg = new RegExp(Pct,'g');
+  var Pos =-1;
+
+  while (str.search(Reg)!==-1) {
+
+    var SqtLeftNum = 0;
+    var SqtRightNum = 0;
+    var DqtLeftNum = 0;
+    var DqtRightNum = 0;
+    var LeftStr = undefined;
+    var RightStr = undefined;
+
+    Pos = str.search(Reg);
+    LeftStr = str.slice(0,Pos);
+    RightStr = str.slice(Pos+1,str.length);
+
+    if (LeftStr.match(/'/g)!==null) {
+      SqtLeftNum = LeftStr.match(/'/g).length;
+    }
+    if (RightStr.match(/'/g)!==null) {
+      SqtRightNum = RightStr.match(/'/g).length;
+    }
+    if (LeftStr.match(/"/g)!==null) {
+      DqtLeftNum = LeftStr.match(/"/g).length;
+    }
+    if (RightStr.match(/"/g)!==null) {
+      DqtRightNum = RightStr.match(/"/g).length;
+    }
+    //"'"的情况未考虑
+    if (SqtLeftNum%2===0 && SqtRightNum%2===0 && DqtLeftNum%2===0 && DqtRightNum%2===0) {
+      return Pos;
+    }
+    str = str.slice(0,Pos) + "@" + str.slice(Pos+1,str.length);
+  }
+  return -1;
 }

@@ -21,7 +21,6 @@ function LinkString(str) {
   rtnObj = ucctojs(rtnStr);
    while (i<=iMax) {
      sonObjArray[i] = ucctojs(sonStrArray[i]);
-     console.log(sonStrArray[i]);
      rtnObj.varContent += sonObjArray[i].varContent
      i++;
    }
