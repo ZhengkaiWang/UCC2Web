@@ -176,7 +176,7 @@ function push(obj){
 }
 
 //-----------------------------------------------------= Get函数 =-----------------------------------------
-function Divide(str,Pct) {
+function DividePoint(str,Pct) {
   var Reg = new RegExp(Pct,'g');
   var Pos =-1;
   var LeftStr = undefined;

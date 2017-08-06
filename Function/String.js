@@ -7,6 +7,7 @@ function LinkString(str) {
   var sonStrArray = new Array();
   var sonObjArray = new Array();
   var i = 0;
+  var iMax = 0;
 
   while (str.search(/,/)!==-1) {
     sonStrArray[i] = str.slice(0,str.search(/,/));
@@ -18,7 +19,7 @@ function LinkString(str) {
 
   i = 0;
 
-  rtnObj = ucctojs(rtnStr);
+  var rtnObj = ucctojs(rtnStr);
    while (i<=iMax) {
      sonObjArray[i] = ucctojs(sonStrArray[i]);
      rtnObj.varContent += sonObjArray[i].varContent

@@ -30,3 +30,10 @@
 - Function
 	- Divide函数实现
 		- 未考虑"'"的情况
+
+## 8/5
+-	Standard
+	- 单双引号转义符已加
+- Function
+	- Divide->DividePoint 更加符合函数特点
+	- Set函数完成
