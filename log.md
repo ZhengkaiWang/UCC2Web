@@ -41,3 +41,4 @@
 ## 8/6
 - Standard
 	- Set作为函数书写规范
+  - LinkString函数重写完成
