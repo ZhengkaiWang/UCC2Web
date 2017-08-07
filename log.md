@@ -44,3 +44,4 @@
   - LinkString函数重写完成
 - Function
 	- Clear函数完成
+	- ShowHideLayer函数重写完成 Demo完成
