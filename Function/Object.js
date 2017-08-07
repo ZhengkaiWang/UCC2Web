@@ -1,31 +1,23 @@
 
 function Set(str){
 
+  //Return端对象处理
   var RtnStr = str.slice(0,DividePoint(str,'='));
-  var RightStr = str.slice(DividePoint(str,'=')+1,str.length);
-
-  var RtnStrArray = new Array();
   var RtnObjArray = new Array();
+  //Right端对象处理
+  var RightStr = str.slice(DividePoint(str,'=')+1,str.length);
+  var RightObj = ucctojs(RightStr);
   var i = 0;
-  var iMax = 0;
 
   while (DividePoint(RtnStr,',')!==-1) {
-    RtnStrArray[i] = RtnStr.slice(0,DividePoint(RtnStr,','));
-    RtnStr = RtnStr.slice(DividePoint(RtnStr,',')+1,str.length);
-    i++;
-    iMax = i;
-  }
-  RtnStrArray[iMax] = RtnStr;
-
-  i = 0;
-
-  var RightObj = ucctojs(RightStr);
-
-  while (i<=iMax) {
-    RtnObjArray[i] = ucctojs(RtnStrArray[i]);
+    RtnObjArray[i] = ucctojs(RtnStr.slice(0,DividePoint(RtnStr,',')));
     RtnObjArray[i].varContent = RightObj.varContent;
     push(RtnObjArray[i]);
     i++;
+    RtnStr = RtnStr.slice(DividePoint(RtnStr,',')+1,str.length);
   }
+  RtnObjArray[i] = ucctojs(RtnStr);
+  RtnObjArray[i].varContent = RightObj.varContent;
+  push(RtnObjArray[i]);
 
 }
