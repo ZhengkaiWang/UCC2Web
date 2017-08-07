@@ -43,5 +43,5 @@
 	- Set作为函数书写规范
   - LinkString函数重写完成
 - Function
-	- Clear函数完成
 	- ShowHideLayer函数重写完成 Demo完成
+	- Clear函数完成 Demo完成
