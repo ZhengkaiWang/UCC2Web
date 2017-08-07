@@ -1,31 +1,22 @@
 
 function LinkString(str) {
 
-  var rtnStr = str.slice(0,str.search(/[^=]=[^=]/)+1);
-  str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
+  var RtnStr = str.slice(0,DividePoint(str,'='));
+  var RtnObj = ucctojs(RtnStr);
+  str = str.slice(DividePoint(str,'=')+1,str.length);
 
   var sonStrArray = new Array();
   var sonObjArray = new Array();
   var i = 0;
-  var iMax = 0;
 
   while (str.search(/,/)!==-1) {
-    sonStrArray[i] = str.slice(0,str.search(/,/));
-    str = str.slice(str.search(/,/)+1,str.length);
+    sonObjArray[i] = ucctojs(str.slice(0,DividePoint(str,',')));
+    RtnObj.varContent += sonObjArray[i].varContent
     i++;
-    iMax = i;
+    str = str.slice(DividePoint(str,',')+1,str.length);
   }
-  sonStrArray[iMax] = str;
-
-  i = 0;
-
-  var rtnObj = ucctojs(rtnStr);
-   while (i<=iMax) {
-     sonObjArray[i] = ucctojs(sonStrArray[i]);
-     rtnObj.varContent += sonObjArray[i].varContent
-     i++;
-   }
-
-  push(rtnObj);
+  sonObjArray[i] = ucctojs(str);
+  RtnObj.varContent += sonObjArray[i].varContent;
+  push(RtnObj);
 
 }
