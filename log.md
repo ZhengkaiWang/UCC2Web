@@ -37,4 +37,8 @@
 - Function
 	- Divide->DividePoint 更加符合函数特点
 	- Set函数完成
-	- LinkString函数重写完成
+
+## 8/6
+- Standard
+	- Set作为函数书写规范
+  - LinkString函数重写完成
