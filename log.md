@@ -55,3 +55,4 @@
 	- ColorBrowse 完成
 		- 添加colpock.css colpick.js
 		- 下次完善
+	- Clipboard函数 chrome不支持

@@ -61,3 +61,7 @@ function ColorBrowse(Str) {
   push(RtnObj);
   console.log(RtnObj);
 }
+
+function Clipboard(Str) {
+  //Chrome 暂不支持对剪切板的访问
+}
