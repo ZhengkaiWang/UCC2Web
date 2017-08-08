@@ -10,6 +10,7 @@ function ShowLayer(id){
 
 function HideButton(str){
     var sonObjArray = new Array();
+    var i = 0;
     while (str.search(/,/)!==-1) {
       sonObjArray[i] = ucctojs(str.slice(0,DividePoint(str,',')));
       sonObjArray[i].style.display="none";
@@ -21,6 +22,7 @@ function HideButton(str){
 }
 function showButton(str){
     var sonObjArray = new Array();
+    var i = 0;
     while (str.search(/,/)!==-1) {
       sonObjArray[i] = ucctojs(str.slice(0,DividePoint(str,',')));
       sonObjArray[i].style.display="block";
