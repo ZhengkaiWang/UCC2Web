@@ -65,3 +65,11 @@ function ColorBrowse(Str) {
 function Clipboard(Str) {
   //Chrome 暂不支持对剪切板的访问
 }
+
+function Exit() {
+  //Chrome Safari Firefox不支持 只能关闭js自己打开的窗口
+  // 此处通过清空窗口来间接实现
+  var Form = ucctojs("Me");
+  var Body = Form.parentNode;
+  Body.remove(Form);
+}

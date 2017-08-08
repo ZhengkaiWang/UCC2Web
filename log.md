@@ -56,3 +56,5 @@
 		- 添加colpock.css colpick.js
 		- 下次完善
 	- Clipboard函数 chrome不支持
+	- Exit函数完成
+		- 清空内容 模拟退出
