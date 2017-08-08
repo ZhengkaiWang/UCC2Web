@@ -1,7 +1,5 @@
 //IF函数
-//.*value 取出来的值 ucc端
 //.*obj js操作对象 js端
-//.*var.* 变量 js端ucc端通用
 //.*str 字符串 一堆东西的集合
 
 function IF(str) {

@@ -50,3 +50,4 @@
 - Function
 	- ShowHideLayer函数优化
 		- 遗留 ucctype
+	- SetClear优化 Demo优化
