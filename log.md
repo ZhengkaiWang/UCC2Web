@@ -42,3 +42,7 @@
 - Standard
 	- Set作为函数书写规范
   - LinkString函数重写完成
+## 8/8
+-Function
+  -HideButton函数完成
+  -ShowButton函数完成
