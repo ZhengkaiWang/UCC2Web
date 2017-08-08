@@ -51,3 +51,7 @@
 	- ShowHideLayer函数优化
 		- 遗留 ucctype
 	- SetClear优化 Demo优化
+	- IF完成
+	- ColorBrowse 完成
+		- 添加colpock.css colpick.js
+		- 下次完善
