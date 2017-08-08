@@ -45,3 +45,8 @@
 - Function
 	- ShowHideLayer函数重写完成 Demo完成
 	- Clear函数完成 Demo完成
+
+## 8/7
+- Function
+	- ShowHideLayer函数优化
+		- 遗留 ucctype

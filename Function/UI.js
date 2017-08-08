@@ -1,31 +1,19 @@
 function HideLayer(Str){
-
-  var ObjArray = new Array();
-  var i = 0;
-
+  Str += ',';
   while (DividePoint(Str,',')!==-1) {
-    ObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
-    ObjArray[i].style.display="none";
-    i++;
+    ucctojs(Str.slice(0,DividePoint(Str,','))).style.display="none";
     Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   }
-  ObjArray[i] = ucctojs(Str);
-  ObjArray[i].style.display="none";
-
 }
 
 function ShowLayer(Str){
-
-    var ObjArray = new Array();
-    var i = 0;
-
+  Str += ',';
+  var Obj;
     while (DividePoint(Str,',')!==-1) {
-      ObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      ObjArray[i].style.display="block";
-      i++;
+      Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+//      if (Obj.getAttribute("ucctype")==="Layer") {
+        Obj.style.display="block";
+//      }else {throwerror(Str,100)}
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
-    ObjArray[i] = ucctojs(Str);
-    ObjArray[i].style.display="block";
-
 }
