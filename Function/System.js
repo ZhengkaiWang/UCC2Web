@@ -1,31 +1,23 @@
-function GetCursorPos(str) {
+function GetCursorPos(Str) {
 
-  var rtnStr;
-  if (str.search(/[^=]=[^=]/)!==-1) {
-    rtnStr = str.slice(0,str.search(/[^=]=[^=]/)+1);
-    rightStr = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
-
-    rtnObj = ucctojs(rtnStr);
-    if(rightStr==="x"){
-      rtnObj.varContent = event.clientX;
-      alert(rtnObj.varContent);
-    }else if (rightStr==="y") {
-      rtnObj.varContent = event.clientY;
-      alert(rtnObj.varContent);
-    }else if (rightStr==="/") {
-      rtnObj.varContent = event.clientX + "/" + event.clientY;
-      alert(rtnObj.varContent);
+  if (DividePoint(Str,'=')!==-1) {
+    var RightStr = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+    if(RightStr==="x"){
+      RtnObj.varContent = event.clientX;
+    }else if (RightStr==="y") {
+      RtnObj.varContent = event.clientY;
+    }else if (RightStr==="/") {
+      RtnObj.varContent = event.clientX + "/" + event.clientY;
     }else {
       //throwerror();
       alert("GetCursorPos()代码写错了= =")
     }
   } else {
-    rtnStr = str;
-    rtnObj = ucctojs(rtnStr);
-    rtnObj.varContent = event.clientX + "/" + event.clientY;
+    var RtnObj = ucctojs(Str);
+    RtnObj.varContent = event.clientX + "/" + event.clientY;
   }
-
-  push(rtnObj);
+  push(RtnObj);
 }
 
 function ColorBrowse(Str) {

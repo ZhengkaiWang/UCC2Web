@@ -58,3 +58,4 @@
 	- Clipboard函数 chrome不支持
 	- Exit函数完成
 		- 清空内容 模拟退出
+	- GetCursorPos函数优化完成
