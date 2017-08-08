@@ -117,7 +117,10 @@ function ucctojs(str) {
       if(eval("typeof "+str+"==='object'")){
         varObj = eval(str);
         varObj.varType = "gblVar";
-      }else {
+      } else if (eval("typeof "+str+"==='number'")) {
+        varObj.varContent = eval(str);
+        varObj.varType = "number";
+      } else {
         return throwerror(str,2);
       }
     }
@@ -217,6 +220,7 @@ function DividePoint(str,Pct) {
     if (SqtLeftNum%2===0 && SqtRightNum%2===0 && DqtLeftNum%2===0 && DqtRightNum%2===0) {
       return Pos;
     }
+    //@代替=
     str = str.slice(0,Pos) + "@" + str.slice(Pos+1,str.length);
   }
   return -1;
