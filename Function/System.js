@@ -1,3 +1,4 @@
+//-----------------------------------------------------= GetCursorPos =-----------------------------------------
 function GetCursorPos(Str) {
 
   if (DividePoint(Str,'=')!==-1) {
@@ -19,7 +20,7 @@ function GetCursorPos(Str) {
   }
   push(RtnObj);
 }
-
+//-----------------------------------------------------= ColorBrowse =-----------------------------------------
 function ColorBrowse(Str) {
   var Obj = window.event.target;
   $(Obj).colpick({
@@ -53,15 +54,44 @@ function ColorBrowse(Str) {
   push(RtnObj);
   console.log(RtnObj);
 }
-
+//-----------------------------------------------------= Clipboard =-----------------------------------------
 function Clipboard(Str) {
   //Chrome 暂不支持对剪切板的访问
 }
-
+//-----------------------------------------------------= Exit =-----------------------------------------
 function Exit() {
   //Chrome Safari Firefox不支持 只能关闭js自己打开的窗口
   // 此处通过清空窗口来间接实现
   var Form = ucctojs("Me");
   var Body = Form.parentNode;
   Body.remove(Form);
+}
+//-----------------------------------------------------= GetDateTime =-----------------------------------------
+function GetDateTime(Str) {
+  var DateObj = new Date();
+  if (DividePoint(Str,',')!==-1) {
+    var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+    var Which = Str.slice(DividePoint(Str,'=')+1,DividePoint(Str,','));
+    switch (Which) {
+      case "YEAR":
+      case "MONTH":
+      case "DAY":
+      case "HOURS":
+      case "MINUTES":
+      case "SECONDS":
+      case "WEEKDAY":
+      break;
+      default:
+        
+    }
+  } else if (DividePoint(Str,'=')!==-1) {
+    var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+    RtnObj.varContent = '';
+    if (Str.search(/YYYY-MM-DD/)!==-1) { RtnObj.varContent = DateObj.getFullYear()+'-'+DateObj.getMonth()+'-'+DateObj.getDay();}
+    if (Str.search(/HH:mm:ss/)!==-1) { RtnObj.varContent += ' '+DateObj.getHours()+':'+DateObj.getMinutes()+':'+DateObj.getSeconds();}
+  } else {
+    var RtnObj = ucctojs(Str);
+    RtnObj.varContent = DateObj.getFullYear()+'-'+DateObj.getMonth()+'-'+DateObj.getDay()+' '+DateObj.getHours()+':'+DateObj.getMinutes()+':'+DateObj.getSeconds();
+  }
+  DateObj = null;
 }

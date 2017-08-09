@@ -59,3 +59,9 @@
 	- Exit函数完成
 		- 清空内容 模拟退出
 	- GetCursorPos函数优化完成
+
+## 8/8
+- Function
+	-	ColorBrowse优化
+	- GetDateTime函数实现
+	- ？GetDataTime改名
