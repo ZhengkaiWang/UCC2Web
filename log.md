@@ -65,3 +65,7 @@
 	-	ColorBrowse优化
 	- GetDateTime函数实现
 	- ？GetDataTime改名
+
+## 8/9
+-	Function
+	- IF函数存在未完成点 LIKE REG
