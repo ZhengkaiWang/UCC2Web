@@ -15,14 +15,11 @@ function Case() {
   var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
   //console.log(BoolRightObj);
   if (DividePoint(Str,"Else")!==-1) {
-    var TrueAction = ucctojs(Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else")));
-    var FalseAction = ucctojs(Str.slice(DividePoint(Str,"Else")+5,Str.length));
+    var TrueAction = Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else"));
+    var FalseAction = Str.slice(DividePoint(Str,"Else")+5,Str.length);
   } else {
-    var TrueAction = ucctojs(Str.slice(DividePoint(Str,"Then")+5),Str.length);
-    if (RtnStr!==null) {
-      var FalseAction = RtnObj.varContent;
-    } else {
-      var FalseAction = null;
+    var TrueAction = Str.slice(DividePoint(Str,"Then")+5,Str.length);
+    var FalseAction = null;
     }
   }
 
@@ -58,7 +55,7 @@ function IF(Str) {
     var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else")));
     var FalseValueObj = ucctojs(Str.slice(DividePoint(Str,"Else")+5,Str.length));
   } else {
-    var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5),Str.length);
+    var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5,Str.length));
     if (RtnStr!==null) {
       var FalseValueObj = RtnObj.varContent;
     } else {
