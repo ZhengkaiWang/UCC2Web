@@ -1,23 +1,27 @@
 
-function Set(str){
-
+function Set(Str){
   //Return端对象处理
-  var RtnStr = str.slice(0,DividePoint(str,'='));
-  var RtnObjArray = new Array();
+  var RtnStr = Str.slice(0,DividePoint(Str,'='));
+  var RtnObj;
   //Right端对象处理
-  var RightStr = str.slice(DividePoint(str,'=')+1,str.length);
-  var RightObj = ucctojs(RightStr);
-  var i = 0;
+  var RightObj = ucctojs(Str.slice(DividePoint(Str,'=')+1,Str.length));
 
+  RtnStr += ',';
   while (DividePoint(RtnStr,',')!==-1) {
-    RtnObjArray[i] = ucctojs(RtnStr.slice(0,DividePoint(RtnStr,',')));
-    RtnObjArray[i].varContent = RightObj.varContent;
-    push(RtnObjArray[i]);
-    i++;
-    RtnStr = RtnStr.slice(DividePoint(RtnStr,',')+1,str.length);
+    RtnObj = ucctojs(RtnStr.slice(0,DividePoint(RtnStr,',')));
+    RtnObj.varContent = RightObj.varContent;
+    push(RtnObj);
+    RtnStr = RtnStr.slice(DividePoint(RtnStr,',')+1,RtnStr.length);
   }
-  RtnObjArray[i] = ucctojs(RtnStr);
-  RtnObjArray[i].varContent = RightObj.varContent;
-  push(RtnObjArray[i]);
+}
 
+function Clear(Str) {
+  var Obj;
+  Str += ',';
+  while (DividePoint(Str,',')!==-1) {
+    Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+    Obj.varContent = null;
+    push(Obj);
+    Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
 }

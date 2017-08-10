@@ -1,0 +1,6 @@
+- 函数名重载问题 划分规范
+- 触摸屏的生产力和妥协原则
+- 函数命名问题
+  - SavePicture
+  - GetDataAdd
+  - ADD

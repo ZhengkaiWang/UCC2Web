@@ -1,51 +1,77 @@
-//IF函数
-//.*value 取出来的值 ucc端
-//.*obj js操作对象 js端
-//.*var.* 变量 js端ucc端通用
-//.*str 字符串 一堆东西的集合
+//-----------------------------------------------------= Case =-----------------------------------------
+function Case() {
+  var Rst;
 
-function IF(str) {
+  if (DividePoint(Str,'>')!==-1) {var Logic = ">";}
+  else if (DividePoint(Str,'>=')!==-1) {var Logic = ">=";}
+  else if (DividePoint(Str,'==')!==-1) {var Logic = "==";}
+  else if (DividePoint(Str,'<>')!==-1) {var Logic = "<>";}
+  else if (DividePoint(Str,'<=')!==-1) {var Logic = "<=";}
+  else if (DividePoint(Str,'<')!==-1) {var Logic = "<";}
+  else if (DividePoint(Str,'LIKE REG')!==-1) {var Logic = "LIKE REG";}//?
+  else {console.error("无效Logic");  }
 
-  var rtnvalue = null;
-  if(str.search(/[^=]=[^=]/)!=-1){
-    rtnvalue = str.slice(0,str.search(/[^=]=[^=]/)+1);
-    str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
+  var BoolLeftObj = ucctojs(Str.slice(0,DividePoint(Str,Logic)));
+  var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
+  //console.log(BoolRightObj);
+  if (DividePoint(Str,"Else")!==-1) {
+    var TrueAction = ucctojs(Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else")));
+    var FalseAction = ucctojs(Str.slice(DividePoint(Str,"Else")+5,Str.length));
+  } else {
+    var TrueAction = ucctojs(Str.slice(DividePoint(Str,"Then")+5),Str.length);
+    if (RtnStr!==null) {
+      var FalseAction = RtnObj.varContent;
+    } else {
+      var FalseAction = null;
+    }
   }
 
-  var boolstrstart = 0;
-  var boolstrend = str.search(/Then/);
-  var boolstr = str.slice(boolstrstart,boolstrend);
-  //alert(boolstr);
-  var truevaluestart = boolstrend + 5;
-  var truevalueend = str.search(/Else/);
-  var truevalue = str.slice(truevaluestart,truevalueend);
-  //alert(truevalue);
-  var falsevaluestart = truevalueend + 5;
-  var falsevalueend = str.length;
-  var falsevalue = str.slice(falsevaluestart,falsevalueend);
-  //alert(falsevalue);
-  var leftvaluestart = 0;
-  var leftvalueend = str.search(/==/);
-  var leftvalue = str.slice(leftvaluestart,leftvalueend);
-  var rightvaluestart = leftvalueend + 2;
-  var rightvalueend = boolstrend;
-  var rightvalue = str.slice(rightvaluestart,rightvalueend);
-  //alert(rightvalue);
+  if (eval("BoolLeftObj.varContent"+Logic+"BoolRightObj.varContent")) {
+    Rst = TrueAction.varContent;
+  } else {Rst = FalseAction.varContent;}
 
-  var leftobj = ucctojs(leftvalue);
-  var rightobj = ucctojs(rightvalue);
-  var trueobj = ucctojs(truevalue);
-  var falseobj = ucctojs(falsevalue);
+}
 
-
-  if(typeof rtnvalue!==null){
-    var rtnobj = ucctojs(rtnvalue);
-    if (leftobj.varContent===rightobj.varContent) {
-      rtnobj.varContent = trueobj.varContent;
-    }
-    else {
-      rtnobj.varContent = falseobj.varContent;
-    }
-    push(rtnobj);
+//-----------------------------------------------------= IF =-----------------------------------------
+function IF(Str) {
+  var Rst;
+  var RtnStr = null;
+  if(DividePoint(Str,'=')!==-1){
+    RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
   }
+
+  if (DividePoint(Str,'>')!==-1) {var Logic = ">";}
+  else if (DividePoint(Str,'>=')!==-1) {var Logic = ">=";}
+  else if (DividePoint(Str,'==')!==-1) {var Logic = "==";}
+  else if (DividePoint(Str,'<>')!==-1) {var Logic = "<>";}
+  else if (DividePoint(Str,'<=')!==-1) {var Logic = "<=";}
+  else if (DividePoint(Str,'<')!==-1) {var Logic = "<";}
+  else if (DividePoint(Str,'LIKE REG')!==-1) {var Logic = "LIKE REG";}//?
+  else {console.error("无效Logic");  }
+
+  var BoolLeftObj = ucctojs(Str.slice(0,DividePoint(Str,Logic)));
+  var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
+  //console.log(BoolRightObj);
+  if (DividePoint(Str,"Else")!==-1) {
+    var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else")));
+    var FalseValueObj = ucctojs(Str.slice(DividePoint(Str,"Else")+5,Str.length));
+  } else {
+    var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5),Str.length);
+    if (RtnStr!==null) {
+      var FalseValueObj = RtnObj.varContent;
+    } else {
+      var FalseValueObj = null;
+    }
+  }
+
+  if (eval("BoolLeftObj.varContent"+Logic+"BoolRightObj.varContent")) {
+    Rst = TrueValueObj.varContent;
+  } else {Rst = FalseValueObj.varContent;}
+
+  if (RtnStr!==null) {
+    RtnObj.varContent = Rst;
+    push(RtnObj);
+  } else {return Rst;}
 }

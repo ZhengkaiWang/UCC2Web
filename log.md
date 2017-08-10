@@ -42,3 +42,30 @@
 - Standard
 	- Set作为函数书写规范
   - LinkString函数重写完成
+- Function
+	- ShowHideLayer函数重写完成 Demo完成
+	- Clear函数完成 Demo完成
+
+## 8/7
+- Function
+	- ShowHideLayer函数优化
+		- 遗留 ucctype
+	- SetClear优化 Demo优化
+	- IF完成
+	- ColorBrowse 完成
+		- 添加colpock.css colpick.js
+		- 下次完善
+	- Clipboard函数 chrome不支持
+	- Exit函数完成
+		- 清空内容 模拟退出
+	- GetCursorPos函数优化完成
+
+## 8/8
+- Function
+	-	ColorBrowse优化
+	- GetDateTime函数实现
+	- ？GetDataTime改名
+
+## 8/9
+-	Function
+	- IF函数存在未完成点 LIKE REG
