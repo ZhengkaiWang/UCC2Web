@@ -22,6 +22,7 @@ function Case() {
     var FalseAction = null;
     }
   }
+  
 
   if (eval("BoolLeftObj.varContent"+Logic+"BoolRightObj.varContent")) {
     Rst = TrueAction.varContent;
