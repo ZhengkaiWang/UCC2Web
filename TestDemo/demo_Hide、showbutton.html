@@ -3,21 +3,23 @@
   <head>
     <meta charset="utf-8">
       <title>Demo</title>
-      <link rel="stylesheet" href="SuperDemo_5.css">
+      <link rel="stylesheet" href="demo.css">
         <link rel="stylesheet" href="../Tool/jquery-ui.css">
         </head>
         <body>
           <form id="Me" class="Me">
             <div id="Layer1" class="Layer1">
               <label id="lbl欢迎" class="lbl欢迎" ucctype="Label" onclick="">泽阳欢迎您</label>
-              <img id="Button2" class="Button2" ucctype="Image" height="40" width="40" src="" alt="下一页" onclick="ShowLayer(Button2Fx0);">
+              <img id="Button2" class="Button2" ucctype="Image" src="Data/" onclick="ShowLayer(Button2Fx0);">
                 <script>var Button2Fx0="Layer2";</script>
+                <span class="Button2" style="border:none;width:auto;height:auto;background:none;left:168.0px;top:408.0px;text-align:left;">下一页</span>
               </img>
-              <img id="btnget" class="btnget" ucctype="Image" height="40" width="40" src="" alt="btnget" onclick="ShowLayer(btngetFx0);">
+              <img id="btnget" class="btnget" ucctype="Image" src="Data/" onclick="ShowLayer(btngetFx0);">
                 <script>var btngetFx0="Layerget";</script>
+                <span id ="btngetspan"class="btnget" style="border:none;width:auto;height:auto;background:none;left:220.0px;top:408.0px;text-align:left;">btnget</span>
               </img>
-              <input id="cmb" class="cmb" type="button" ucctype="CommandButton"  value="cmbIf-set" onclick="IF(cmbFx0);Set(cmbFx1);HideButton(cmbFx2)">
-                <script>var cmbFx0="Varz=Control3.Text=='您好' Then '这是if函数' Else '不是您好'";var cmbFx1="txta.Text=Varz";var cmbFx2="btnget";</script>
+              <input id="cmb" class="cmb" type="button" ucctype="CommandButton"  value="cmbIf-set" onclick="IF(cmbFx0);Set(cmbFx1);HideButton(cmbFx2);">
+                <script>var cmbFx0="Varz=Control3.Text==\'您好\' Then \'这是if函数\' Else \'不是您好\'";var cmbFx1="txta.Text,txtb.Text=Varz";var cmbFx2="btnget,Control3,lbl欢迎"</script>
               </input>
               <input id="txta" class="txta" type="text" ucctype="TextBox" style="text-align:center"  onclick="">
               </input>
@@ -26,29 +28,29 @@
                 <option>您好</option>
                 <option>世界</option>
               </select>
-              <input id="Control4" class="Control4" type="button" ucctype="CommandButton"  value="cmblinkstring" onclick="LinkString(Control4Fx0);">
-                <script>var Control4Fx0="txtb.Text=' ','@Control3','@txta'";</script>
+              <input id="Control4" class="Control4" type="button" ucctype="CommandButton"  value="cmblinkstring" onclick="LinkString(Control4Fx0);ShowButton(Control4Fx1);">
+                <script>var Control4Fx0="txtb.Text=\' \',\'@Control3\',\'@txta\'";var Control4Fx1="btnget,Control3,lbl欢迎"</script>
               </input>
               <input id="txtb" class="txtb" type="text" ucctype="TextBox" style="text-align:center"  onclick="">
               </input>
               <div id="Layer2" class="Layer2">
-                <img id="Button3" class="Button3" ucctype="Image" height="40" width="40" src="" alt="back" onclick="HideLayer(Button3Fx0);">
+                <img id="Button3" class="Button3" ucctype="Image" src="Data/" onclick="HideLayer(Button3Fx0);">
                   <script>var Button3Fx0="Layer2";</script>
+                  <span class="Button3" style="border:none;width:auto;height:auto;background:none;left:75.03546px;top:57.97163px;text-align:left;">back</span>
                 </img>
-                <input id="cmb加载" class="cmb加载" type="button" ucctype="CommandButton"  value="加载表" onclick="DB(cmd加载Fx0);BindingDataTo(cmd加载Fx1)">
-                  <script>var cmd加载Fx0="dbChart=Mysql,localhost:3306,SuperDemo,root,,SQL SELECT * FROM Chart";var cmd加载Fx1="Report=dbChart";</script>
+                <input id="cmb加载" class="cmb加载" type="button" ucctype="CommandButton"  value="加载表" onclick="">
                 </input>
                 <table id="Report" ucctype="Report" class="Report" >
                 </table>
-                <input id="cmb图" class="cmb图" type="button" ucctype="CommandButton"  value="加载图" onclick="BindingDataTo(cmd图Fx0)">
-                  <script>var cmd图Fx0="Control9=dbChart";</script>
+                <input id="cmb图" class="cmb图" type="button" ucctype="CommandButton"  value="加载图" onclick="">
                 </input>
                 <div id="Control9" ucctype="Chart" class="Control9" >
                 </div>
               </div>
               <div id="Layerget" class="Layerget">
-                <img id="getback" class="getback" ucctype="Image" height="40" width="40" src="" alt="back" onclick="HideLayer(getbackFx0);">
+                <img id="getback" class="getback" ucctype="Image" src="Data/" onclick="HideLayer(getbackFx0);">
                   <script>var getbackFx0="Layerget";</script>
+                  <span class="getback" style="border:none;width:auto;height:auto;background:none;left:50.0px;top:53.0px;text-align:left;">back</span>
                 </img>
                 <input id="cmbget" class="cmbget" type="button" ucctype="CommandButton"  value="获取" onclick="GetCursorPos(cmbgetFx0);Set(cmbgetFx1);">
                   <script>var cmbgetFx0="Varget";var cmbgetFx1="txtc.Text=Varget";</script>
@@ -58,7 +60,7 @@
               </div>
             </div>
           </form>
-          <script>var Fx0 = '{"Varget":"499/353","[Main]":"HideLayer:Layer2;HideLayer:Layerget;","Varz":"这是if函数"}'</script>
+          <script>var Fx0 = '{"[Main]":"HideLayer:Layer2;HideLayer:Layerget;","Varz":"这是if函数","Varget":"499/353"}'</script>
           <script src="../Function/Basic.js">
           </script>
           <script src="../Function/Data.js">
