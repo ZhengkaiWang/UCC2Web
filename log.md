@@ -42,6 +42,7 @@
 - Standard
 	- Set作为函数书写规范
   - LinkString函数重写完成
+<<<<<<< HEAD
 - Function
 	- ShowHideLayer函数重写完成 Demo完成
 	- Clear函数完成 Demo完成
@@ -65,7 +66,11 @@
 	-	ColorBrowse优化
 	- GetDateTime函数实现
 	- ？GetDataTime改名
+	-Function
+  -HideButton函数完成
+  -ShowButton函数完成
 
 ## 8/9
 -	Function
 	- IF函数存在未完成点 LIKE REG
+
