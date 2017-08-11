@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <title>Demo</title>
-      <link rel="stylesheet" href="SuperDemo_5.css">
+      <link rel="stylesheet" href="demo.css">
         <link rel="stylesheet" href="../Tool/jquery-ui.css">
         </head>
         <body>
@@ -16,8 +16,8 @@
               <img id="btnget" class="btnget" ucctype="Image" height="40" width="40" src="" alt="btnget" onclick="ShowLayer(btngetFx0);">
                 <script>var btngetFx0="Layerget";</script>
               </img>
-              <input id="cmb" class="cmb" type="button" ucctype="CommandButton"  value="cmbIf-set" onclick="IF(cmbFx0);Set(cmbFx1);HideButton(cmbFx2)">
-                <script>var cmbFx0="Varz=Control3.Text=='您好' Then '这是if函数' Else '不是您好'";var cmbFx1="txta.Text=Varz";var cmbFx2="btnget";</script>
+              <input id="cmb" class="cmb" type="button" ucctype="CommandButton"  value="cmbIf-set" onclick="IF(cmbFx0);Set(cmbFx1);HideControl(cmbFx2)">
+                <script>var cmbFx0="Varz=Control3.Text=='您好' Then '这是if函数' Else '不是您好'";var cmbFx1="txta.Text=Varz";var cmbFx2="btnget,Control3";</script>
               </input>
               <input id="txta" class="txta" type="text" ucctype="TextBox" style="text-align:center"  onclick="">
               </input>
@@ -26,8 +26,8 @@
                 <option>您好</option>
                 <option>世界</option>
               </select>
-              <input id="Control4" class="Control4" type="button" ucctype="CommandButton"  value="cmblinkstring" onclick="LinkString(Control4Fx0);">
-                <script>var Control4Fx0="txtb.Text=' ','@Control3','@txta'";</script>
+              <input id="Control4" class="Control4" type="button" ucctype="CommandButton"  value="cmblinkstring" onclick="LinkString(Control4Fx0);ShowControl(Control4Fx1)">
+                <script>var Control4Fx0="txtb.Text=' ','@Control3','@txta'";var Control4Fx1="btnget,Control3";</script>
               </input>
               <input id="txtb" class="txtb" type="text" ucctype="TextBox" style="text-align:center"  onclick="">
               </input>
