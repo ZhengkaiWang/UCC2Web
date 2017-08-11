@@ -1,6 +1,7 @@
 //-----------------------------------------------------= Case =-----------------------------------------
-function Case() {
-  var Rst;
+
+function Case(Str) {
+
 
   if (DividePoint(Str,'>')!==-1) {var Logic = ">";}
   else if (DividePoint(Str,'>=')!==-1) {var Logic = ">=";}
@@ -13,22 +14,31 @@ function Case() {
 
   var BoolLeftObj = ucctojs(Str.slice(0,DividePoint(Str,Logic)));
   var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
-  //console.log(BoolRightObj);
+
+
   if (DividePoint(Str,"Else")!==-1) {
-    var TrueAction = ucctojs(Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else")));
-    var FalseAction = ucctojs(Str.slice(DividePoint(Str,"Else")+5,Str.length));
+    var TrueAction = Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else"));
+    var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
+    var TrueActionPrm = TrueAction.slice(DividePoint(TrueAction,':')+1,TrueAction.length);    var FalseAction = Str.slice(DividePoint(Str,"Else")+5,Str.length);
+    var FalseActionFx = FalseAction.slice(0,DividePoint(FalseAction,':'));
+    var FalseActionPrm = FalseAction.slice(DividePoint(FalseAction,':')+1,FalseAction.length);
   } else {
-    var TrueAction = ucctojs(Str.slice(DividePoint(Str,"Then")+5),Str.length);
-    if (RtnStr!==null) {
-      var FalseAction = RtnObj.varContent;
-    } else {
-      var FalseAction = null;
+    var TrueAction = Str.slice(DividePoint(Str,"Then")+5,Str.length);
+    var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
+    var TrueActionPrm = TrueAction.slice(DividePoint(TrueAction,':')+1,TrueAction.length);
+    var FalseAction = null;
+    var FalseActionFx = null;
+    var FalseActionPrm = null;
     }
-  }
+
+  TrueActionPrm = TrueActionPrm.replace(/'/g,"\\'");
+  TrueActionPrm = TrueActionPrm.replace(/"/g,'\\"');
 
   if (eval("BoolLeftObj.varContent"+Logic+"BoolRightObj.varContent")) {
-    Rst = TrueAction.varContent;
-  } else {Rst = FalseAction.varContent;}
+    eval(TrueActionFx+'("'+TrueActionPrm+'")')
+  } else {
+    eval(FalseActionFx+'("'+FalseActionPrm+'")')
+  }
 
 }
 
@@ -58,7 +68,9 @@ function IF(Str) {
     var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else")));
     var FalseValueObj = ucctojs(Str.slice(DividePoint(Str,"Else")+5,Str.length));
   } else {
-    var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5),Str.length);
+
+    var TrueValueObj = ucctojs(Str.slice(DividePoint(Str,"Then")+5,Str.length));
+
     if (RtnStr!==null) {
       var FalseValueObj = RtnObj.varContent;
     } else {
