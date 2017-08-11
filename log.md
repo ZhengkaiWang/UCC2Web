@@ -69,3 +69,10 @@
 ## 8/9
 -	Function
 	- IF函数存在未完成点 LIKE REG
+
+## 8/10
+-	Function
+	- Case
+		- eval函数不能识别转义
+		- 修正了ucctojs只识别单引号的问题
+		- eval？的代替版本
