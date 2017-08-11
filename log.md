@@ -77,5 +77,8 @@
 -	Function
 	-HideControl函数完成(用Switch语句，局部变量type表示ucctype)
     -ShowControl函数完成
-
+## 8/11
+-	Function
+	-Translucence函数还未完成(子元素继承此属性)
+    
 

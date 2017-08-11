@@ -154,3 +154,21 @@ function ShowControl(Str){
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }
+function Translucence(Str){
+  //Return端对象处理
+  var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+  //Right端对象处理
+  var RightObj = ucctojs(Str.slice(DividePoint(Str,'=')+1,Str.length));
+  var temp = RightObj.varContent;
+  if(temp<0){
+      temp=0;
+  }
+  else if (temp>255) {
+       temp=255;
+  } else {
+     temp = temp;
+  }
+    RtnObj.style.opacity = temp/255;
+    //rgba(0,0,0,0.5)
+    //RtnObj.style.filter='alpha(opacity='+temp/2.25+')';
+}
