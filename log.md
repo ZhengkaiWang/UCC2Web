@@ -73,4 +73,9 @@
 ## 8/9
 -	Function
 	- IF函数存在未完成点 LIKE REG
+## 8/10
+-	Function
+	-HideControl函数完成(用Switch语句，局部变量type表示ucctype)
+    -ShowControl函数完成
+
 
