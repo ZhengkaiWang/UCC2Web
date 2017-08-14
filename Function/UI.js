@@ -16,6 +16,7 @@ function ShowLayer(Str){
 //      }else {throwerror(Str,100)}
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
+
 }
 
 function HideButton(Str){
