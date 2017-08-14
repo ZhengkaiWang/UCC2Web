@@ -83,5 +83,6 @@
 ## 8/14
 -   Function
     -GetAsc函数完成
+	-GetChr函数完成
     
 
