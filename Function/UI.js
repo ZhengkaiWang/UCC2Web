@@ -1,3 +1,4 @@
+//-----------------------------------------------------= HideLayer函数 =-----------------------------------------
 function HideLayer(Str){
   Str += ',';
   while (DividePoint(Str,',')!==-1) {
@@ -5,7 +6,7 @@ function HideLayer(Str){
     Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   }
 }
-
+//-----------------------------------------------------= ShowLayer函数 =-----------------------------------------
 function ShowLayer(Str){
   Str += ',';
   var Obj;
@@ -17,7 +18,7 @@ function ShowLayer(Str){
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }
-
+//-----------------------------------------------------= HideButton函数 =-----------------------------------------
 function HideButton(Str){
     Str +=',';
     var Obj,Objspan;
@@ -34,6 +35,7 @@ function HideButton(Str){
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }
+//-----------------------------------------------------= ShowButton函数 =-----------------------------------------
 function ShowButton(Str){
     Str +=',';
     var Obj,Objspan;
@@ -50,6 +52,7 @@ function ShowButton(Str){
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }
+//-----------------------------------------------------= HideControl函数 =-----------------------------------------
 function HideControl(Str){
     Str +=',';
     var Obj;
@@ -102,6 +105,7 @@ function HideControl(Str){
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }
+//-----------------------------------------------------= ShowControl函数 =-----------------------------------------
 function ShowControl(Str){
     Str +=',';
     var Obj;
@@ -154,6 +158,7 @@ function ShowControl(Str){
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }
+//-----------------------------------------------------= Translucence函数 =-----------------------------------------
 function Translucence(Str){
   //Return端对象处理
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));

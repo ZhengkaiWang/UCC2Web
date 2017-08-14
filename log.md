@@ -80,5 +80,8 @@
 ## 8/11
 -	Function
 	-Translucence函数还未完成(子元素继承此属性)
+## 8/14
+-   Function
+    -GetAsc函数完成
     
 
