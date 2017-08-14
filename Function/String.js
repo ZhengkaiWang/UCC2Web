@@ -47,3 +47,11 @@ function LinkString(str) {
     }
     push(RtnObj);
 }
+function GetChr(Str){
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    Str=ucctojs(Str);
+    RtnObj.varContent=String.fromCharCode(Str.varContent);
+    push(RtnObj);
+}
