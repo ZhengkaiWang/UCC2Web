@@ -62,9 +62,11 @@ function Replace(Str){
     Str += ',';
     var RtnStr = Str.slice(0,DividePoint(Str,'='));
     var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
     var sonObjArray = new Array();
     var i=0;
     while (DividePoint(Str,',')!==-1) {
+        console.log(Str);
       sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
       i++;
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
@@ -77,3 +79,25 @@ function Replace(Str){
     push(RtnObj);
 
    }
+
+function InsertString(Str) {
+    Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+  if (sonObjArray.length<3) {
+      RtnObj.varContent = sonObjArray[0].varContent;
+  }else {
+      str1 = sonObjArray[0].varContent.substring(0,sonObjArray[2].varContent);
+      str2 = sonObjArray[0].varContent.substring(sonObjArray[2].varContent) ;
+      RtnObj.varContent =str1+sonObjArray[1].varContent+str2;
+  }
+    push(RtnObj);
+}

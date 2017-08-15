@@ -85,5 +85,7 @@
     -GetAsc函数完成
 	-GetChr函数完成
 	-Replace函数
-    
+## 8/15
+-   Function
+    -InsertString函数完成
 
