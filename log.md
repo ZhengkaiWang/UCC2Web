@@ -88,4 +88,5 @@
 ## 8/15
 -   Function
     -InsertString函数完成
+	-GetPartOfString函数完成
 
