@@ -19,7 +19,7 @@
 		- 完成php及apache环境搭建D:/amp  
 			- php 5.3.5 VC6  
 			- apache 2.2 虚拟主机指向E:/UCC2H5/www 公司服务器自带  
-			- port 开放8181端口测试  
+			- port 开放8181端口测试  			
 			- 备注 E盘apache24测试 全部搭建成功可删除
 		- 文件目录   	
 	- 完成repo搭建   
@@ -42,7 +42,7 @@
 - Standard
 	- Set作为函数书写规范
   - LinkString函数重写完成
-<<<<<<< HEAD
+
 - Function
 	- ShowHideLayer函数重写完成 Demo完成
 	- Clear函数完成 Demo完成
@@ -66,26 +66,41 @@
 	-	ColorBrowse优化
 	- GetDateTime函数实现
 	- ？GetDataTime改名
+
 	-Function
   -HideButton函数完成
   -ShowButton函数完成
 
+
 ## 8/9
 -	Function
 	- IF函数存在未完成点 LIKE REG
+
 ## 8/10
 -	Function
 	-HideControl函数完成(用Switch语句，局部变量type表示ucctype)
-    -ShowControl函数完成
+  -ShowControl函数完成
+	- Case
+		- eval函数不能识别转义
+		- 修正了ucctojs只识别单引号的问题
+		- eval？的代替版本
+
 ## 8/11
 -	Function
-	-Translucence函数还未完成(子元素继承此属性)
+	-	Translucence函数还未完成(子元素继承此属性)
 ## 8/14
--   Function
-    -GetAsc函数完成
-	-GetChr函数完成
-	-Replace函数
+
 ## 8/15
 -   Function
     -InsertString函数完成
 
+-	Function
+  -	GetAsc函数完成
+	-	GetChr函数完成
+	-	Replace函数
+
+## 8/15
+- Function
+	- Get函数完成
+	- New函数80%
+	- ini？
