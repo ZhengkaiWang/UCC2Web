@@ -22,13 +22,13 @@ function ShowLayer(Str){
 //-----------------------------------------------------= HideButton函数 =-----------------------------------------
 function HideButton(Str){
     Str +=',';
-    var Obj,Objspan;
+    var Obj,ObjTitle;
     while (DividePoint(Str,',')!==-1) {
       Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      Objspan = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
+      ObjTitle = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
       if(Obj.getAttribute("ucctype")=="Image"||Obj.getAttribute("ucctype")=="Gif"||Obj.getAttribute("ucctype")=="Apng"||Obj.getAttribute("ucctype")=="Label"){
          Obj.style.display="none";
-         Objspan.style.display="none";
+         ObjTitle.style.display="none";
       }
       else{
           console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是button类型，此函数对其无作用');
@@ -39,13 +39,13 @@ function HideButton(Str){
 //-----------------------------------------------------= ShowButton函数 =-----------------------------------------
 function ShowButton(Str){
     Str +=',';
-    var Obj,Objspan;
+    var Obj,ObjTitle;
     while (DividePoint(Str,',')!==-1) {
       Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      Objspan = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
+      ObjTitle = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
       if(Obj.getAttribute("ucctype")=="Image"||Obj.getAttribute("ucctype")=="Gif"||Obj.getAttribute("ucctype")=="Apng"||Obj.getAttribute("ucctype")=="Label"){
          Obj.style.display="block";
-         Objspan.style.display="block";
+         ObjTitle.style.display="block";
       }
       else{
           console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是button类型，此函数对其无作用');

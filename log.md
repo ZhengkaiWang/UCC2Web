@@ -89,6 +89,11 @@
 -	Function
 	-	Translucence函数还未完成(子元素继承此属性)
 ## 8/14
+
+## 8/15
+-   Function
+    -InsertString函数完成
+
 -	Function
   -	GetAsc函数完成
 	-	GetChr函数完成
