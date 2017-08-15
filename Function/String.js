@@ -92,12 +92,63 @@ function InsertString(Str) {
       i++;
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   }
-  if (sonObjArray.length<3) {
+  //如果参数输入不全，或者插入位置等于0，或者大于字符长度，返回原值
+  if (sonObjArray.length<3||sonObjArray[2].varContent==0||sonObjArray[2].varContent>sonObjArray[0].varContent.length) {
       RtnObj.varContent = sonObjArray[0].varContent;
   }else {
-      str1 = sonObjArray[0].varContent.substring(0,sonObjArray[2].varContent);
-      str2 = sonObjArray[0].varContent.substring(sonObjArray[2].varContent) ;
+      str1 = sonObjArray[0].varContent.slice(0,sonObjArray[2].varContent);
+      str2 = sonObjArray[0].varContent.slice(sonObjArray[2].varContent) ;
       RtnObj.varContent =str1+sonObjArray[1].varContent+str2;
+  }
+    push(RtnObj);
+}
+
+function GetPartOfString(Str){
+    Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+  if (sonObjArray.length<3) {
+      RtnObj.varContent = sonObjArray[0].varContent;
+  }
+  //GetPartOfString:var='Expression',Start, Count类型
+  else if(typeof(sonObjArray[1].varContent)=='number'){
+      //起始位置必须在字符串长度之间
+      if(sonObjArray[1].varContent>0&&sonObjArray[1].varContent<=sonObjArray[0].varContent.length){
+          RtnObj.varContent =sonObjArray[0].varContent.substr(sonObjArray[1].varContent-1,sonObjArray[2].varContent);
+      }
+      else{
+           RtnObj.varContent = sonObjArray[0].varContent;
+      }
+  }
+  //GetPartOfString:var='Expression','Delimiter',Option类型
+  else if (typeof(sonObjArray[1].varContent)=='string') {
+       var strArray = sonObjArray[0].varContent.split(sonObjArray[1].varContent);
+       if (typeof(sonObjArray[2].varContent)=='number') {
+           if(sonObjArray[2].varContent>0&&sonObjArray[2].varContent<=strArray.length){
+                RtnObj.varContent = strArray[sonObjArray[2].varContent-1];
+           }else{
+               RtnObj.varContent = "";
+           }
+       }
+       else if(sonObjArray[2].varContent.toLowerCase()=='first'){
+          RtnObj.varContent = strArray[0];
+       }
+
+       else if (sonObjArray[2].varContent.toLowerCase()=='last') {
+            RtnObj.varContent = strArray[strArray.length-1];
+       }
+
+       else{
+            RtnObj.varContent = sonObjArray[0].varContent;
+       }
   }
     push(RtnObj);
 }
