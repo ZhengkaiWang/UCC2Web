@@ -34,19 +34,21 @@ function Get(Str) {
 
 function New(Str) {
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
-  var TypeNameStr = Str.slice(0,DividePoint(Str,','));
+  var TypeNameStr =ucctojs(Str.slice(DividePoint(Str,'=')+1,DividePoint(Str,','))).varContent ;
   Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   var IDStr = Str.slice(0,DividePoint(Str,','));
   Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   var TitleStr = Str.slice(0,DividePoint(Str,','));
-  var ContainerStr = Str.slice(DividePoint(Str,',')+1,Str.length);
-
+  var ContainerStr = ucctojs(Str.slice(DividePoint(Str,',')+1,Str.length)).varContent;
   //对应初始化
-  var NewObj = window.document.createElement(TypeNameStr);
-  NewObj.id = IDStr;
-  NewObj.Title = TitleStr;
-  var ParentObj = window.document.getElementById(ContainerStr);
+  var NewNode = window.document.createElement(TypeNameStr);
+  NewNode.id = IDStr;
+  NewNode.Title = TitleStr;
 
-  ParentObj.appendChild(NewObj);
+  var ParentObj = window.document.getElementById(ContainerStr);
+  ParentObj.appendChild(NewNode);
+
+  RtnObj.varContent = NewNode.id;
+  push(RtnObj);
 
 }
