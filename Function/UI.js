@@ -9,11 +9,11 @@ function HideLayer(Str){
 //-----------------------------------------------------= ShowLayer函数 =-----------------------------------------
 function ShowLayer(Str){
   Str += ',';
-  var Obj;
+  var LayObj;
     while (DividePoint(Str,',')!==-1) {
-      Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      LayObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
 //      if (Obj.getAttribute("ucctype")==="Layer") {
-        Obj.style.display="block";
+        LayObj.style.display="block";
 //      }else {throwerror(Str,100)}
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
@@ -21,13 +21,13 @@ function ShowLayer(Str){
 //-----------------------------------------------------= HideButton函数 =-----------------------------------------
 function HideButton(Str){
     Str +=',';
-    var Obj,ObjTitle;
+    var BtnObj,TtlObj;
     while (DividePoint(Str,',')!==-1) {
-      Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      ObjTitle = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
-      if(Obj.getAttribute("ucctype")=="Image"||Obj.getAttribute("ucctype")=="Gif"||Obj.getAttribute("ucctype")=="Apng"||Obj.getAttribute("ucctype")=="Label"){
-         Obj.style.display="none";
-         ObjTitle.style.display="none";
+      BtnObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      TtlObj = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
+      if(BtnObj.getAttribute("ucctype")=="Image"||BtnObj.getAttribute("ucctype")=="Gif"||BtnObj.getAttribute("ucctype")=="Apng"||BtnObj.getAttribute("ucctype")=="Label"){
+         BtnObj.style.display="none";
+         TtlObj.style.display="none";
       }
       else{
           console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是button类型，此函数对其无作用');
@@ -38,13 +38,13 @@ function HideButton(Str){
 //-----------------------------------------------------= ShowButton函数 =-----------------------------------------
 function ShowButton(Str){
     Str +=',';
-    var Obj,ObjTitle;
+    var BtnObj,TtlObj;
     while (DividePoint(Str,',')!==-1) {
-      Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      ObjTitle = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
-      if(Obj.getAttribute("ucctype")=="Image"||Obj.getAttribute("ucctype")=="Gif"||Obj.getAttribute("ucctype")=="Apng"||Obj.getAttribute("ucctype")=="Label"){
-         Obj.style.display="block";
-         ObjTitle.style.display="block";
+      BtnObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      TtlObj = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
+      if(BtnObj.getAttribute("ucctype")=="Image"||BtnObj.getAttribute("ucctype")=="Gif"||BtnObj.getAttribute("ucctype")=="Apng"||BtnObj.getAttribute("ucctype")=="Label"){
+         BtnObj.style.display="block";
+         TtlObj.style.display="block";
       }
       else{
           console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是button类型，此函数对其无作用');
@@ -55,49 +55,49 @@ function ShowButton(Str){
 //-----------------------------------------------------= HideControl函数 =-----------------------------------------
 function HideControl(Str){
     Str +=',';
-    var Obj;
+    var CtrObj;
     while (DividePoint(Str,',')!==-1) {
-      Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      var type = Obj.getAttribute("ucctype");
+      CtrObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      var type = CtrObj.getAttribute("ucctype");
       switch (type) {
           case "CommandButton":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "TextBox":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "CheckBox":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "OptionButton":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "ComboBox":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "ListBox":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "Report":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "Chart":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "Tree":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "ProgressBar":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "DateBox":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "TimeBox":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           case "WebBrowser":
-              Obj.style.display="none";
+              CtrObj.style.display="none";
               break;
           default:
               console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是control类型，此函数对其无作用');
@@ -108,49 +108,49 @@ function HideControl(Str){
 //-----------------------------------------------------= ShowControl函数 =-----------------------------------------
 function ShowControl(Str){
     Str +=',';
-    var Obj;
+    var CtrObj;
     while (DividePoint(Str,',')!==-1) {
-      Obj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      var type = Obj.getAttribute("ucctype");
+      CtrObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      var type = CtrObj.getAttribute("ucctype");
       switch (type) {
           case "CommandButton":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "TextBox":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "CheckBox":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "OptionButton":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "ComboBox":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "ListBox":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "Report":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "Chart":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "Tree":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "ProgressBar":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "DateBox":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "TimeBox":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           case "WebBrowser":
-              Obj.style.display="block";
+              CtrObj.style.display="block";
               break;
           default:
               console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是control类型，此函数对其无作用');
