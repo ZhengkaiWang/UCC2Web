@@ -38,12 +38,19 @@ function New(Str) {
   Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   var IDStr = Str.slice(0,DividePoint(Str,','));
   Str = Str.slice(DividePoint(Str,',')+1,Str.length);
-  var TitleStr = Str.slice(0,DividePoint(Str,','));
-  var ContainerStr = ucctojs(Str.slice(DividePoint(Str,',')+1,Str.length)).varContent;
+  if (DividePoint(Str,',')!==-1) {
+    var TitleStr = Str.slice(0,DividePoint(Str,','));
+    var ContainerStr = ucctojs(Str.slice(DividePoint(Str,',')+1,Str.length)).varContent;
+  }
+  else {
+    var TitleStr = Str.slice(0,Str.length);
+    var ContainerStr = "Me";
+  }
   //对应初始化
   var NewNode = window.document.createElement(TypeNameStr);
   NewNode.id = IDStr;
   NewNode.Title = TitleStr;
+  NewNode.style.display = "none";
 
   var ParentObj = window.document.getElementById(ContainerStr);
   ParentObj.appendChild(NewNode);

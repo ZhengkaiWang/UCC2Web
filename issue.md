@@ -4,4 +4,11 @@
   - SavePicture
   - GetDataAdd
   - ADD
-- New 函数示例New:varID=TypeName,ID,Title,Container
+  - New（示例命名问题） 函数示例New:varID=TypeName,ID,Title,Container
+- 界限划分
+  - UCC至少要能检出
+    - 基本语法错误 语句形式不符合函数要求
+    - 变量 使用未声明的变量、未出现的ID等
+    - 变量与函数要求相吻合
+- 定位
+  - 软件？编程？

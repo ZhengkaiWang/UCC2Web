@@ -17,7 +17,6 @@ function ShowLayer(Str){
 //      }else {throwerror(Str,100)}
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
-
 }
 //-----------------------------------------------------= HideButton函数 =-----------------------------------------
 function HideButton(Str){
@@ -177,4 +176,20 @@ function Translucence(Str){
     RtnObj.style.opacity = temp/255;
     //rgba(0,0,0,0.5)
     //RtnObj.style.filter='alpha(opacity='+temp/2.25+')';
+}
+
+function ShowScreen(Str) {
+  Str += ',';
+  while (DividePoint(Str,',')!==-1) {
+    ucctojs(Str.slice(0,DividePoint(Str,','))).style.display="block";
+    Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+}
+
+function HideScreen(Str) {
+  Str += ',';
+  while (DividePoint(Str,',')!==-1) {
+    ucctojs(Str.slice(0,DividePoint(Str,','))).style.display="none";
+    Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
 }
