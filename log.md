@@ -105,3 +105,7 @@
 	- Get函数完成
 	- New函数80%
 	- ini？
+  
+## 8/16
+-   Function
+    -FindString函数完成
