@@ -190,3 +190,40 @@ function FindString(Str){
     push(RtnObj);
 
 }
+
+//所有情况根据ucc相应情况输出，无报错，
+function LengthOFString(Str){
+    Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+        if(Str.slice(0,DividePoint(Str,','))==""){
+            break;
+        }
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+  if (sonObjArray.length==0) {
+      RtnObj.varContent = 0;
+  }else if(sonObjArray.length==1) {
+      RtnObj.varContent = sonObjArray[0].varContent.replace(/[\u0391-\uFFE5]/g,"aa").length;
+  }else if(sonObjArray.length>=2) {
+      if(sonObjArray[0].varContent.toLowerCase()=='single'){
+           RtnObj.varContent = sonObjArray[1].varContent.length;
+      }else if (sonObjArray[0].varContent.toLowerCase()=='double') {
+          RtnObj.varContent = sonObjArray[1].varContent.length*2;
+      }else if (sonObjArray[0].varContent.toLowerCase()=='mix') {
+            RtnObj.varContent = sonObjArray[1].varContent.replace(/[\u0391-\uFFE5]/g,"aa").length;
+      }else{
+           RtnObj.varContent = sonObjArray[1].varContent.replace(/[\u0391-\uFFE5]/g,"aa").length;
+      }
+
+  }
+
+    push(RtnObj);
+
+}
