@@ -89,4 +89,6 @@
 -   Function
     -InsertString函数完成
 	-GetPartOfString函数完成
-
+##8/16
+-   Function
+    -FindString函数完成

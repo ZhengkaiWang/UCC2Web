@@ -66,7 +66,6 @@ function Replace(Str){
     var sonObjArray = new Array();
     var i=0;
     while (DividePoint(Str,',')!==-1) {
-        console.log(Str);
       sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
       i++;
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
@@ -151,4 +150,43 @@ function GetPartOfString(Str){
        }
   }
     push(RtnObj);
+}
+//所有情况根据ucc相应情况输出，无报错，
+function FindString(Str){
+    Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+        if(Str.slice(0,DividePoint(Str,','))==""){
+            break;
+        }
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+  if (sonObjArray.length==0) {
+      RtnObj.varContent = 0;
+  }else if(sonObjArray.length==1) {
+      RtnObj.varContent = 1;
+  }else if (sonObjArray.length==2) {
+      RtnObj.varContent = sonObjArray[0].varContent.indexOf(sonObjArray[1].varContent)+1;
+  }
+  else {
+      if(sonObjArray[2].varContent>sonObjArray[0].varContent.length||sonObjArray[2].varContent==0){
+           RtnObj.varContent = sonObjArray[0].varContent.indexOf(sonObjArray[1].varContent)+1;
+      }else if (sonObjArray[2].varContent==-1) {
+          RtnObj.varContent = sonObjArray[0].varContent.lastIndexOf(sonObjArray[1].varContent)+1;
+      }else if (sonObjArray[2].varContent<-1) {
+           RtnObj.varContent="";
+      }else{
+           RtnObj.varContent = sonObjArray[0].varContent.indexOf(sonObjArray[1].varContent,sonObjArray[2].varContent-1)+1;
+      }
+
+  }
+
+    push(RtnObj);
+
 }
