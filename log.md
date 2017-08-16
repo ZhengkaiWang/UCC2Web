@@ -92,3 +92,4 @@
 ##8/16
 -   Function
     -FindString函数完成
+	-LengthOFString函数完成
