@@ -1,6 +1,5 @@
 //-----------------------------------------------------= ucctojs函数 =-----------------------------------------
 //ucctojs函数 将ucc中的元变量转换为js中可操作对象
-
 // var变量
 // varType ucc元变量在js对应变量类型
 // varContent ucc元变量在js对应变量
@@ -28,20 +27,25 @@ function ucctojs(str) {
   var propty = null;
 
   //判断是否有 ".属性值"
-  if(str.indexOf('.')!=-1){
+  if(str.indexOf('.')!==-1){
     point = str.indexOf('.');
     propty = str.slice(point,str.length);
   }
 
   //若有引号
-  if(str.search(/'.*'/)!=-1){
+  if(str.search(/'.*'/)!==-1 || str.search(/".*"/)!==-1){
+    if (str.search(/'.*'/)!==-1) {
+      var quote = "'"
+    } else {
+      var quote = '"'
+    }
 
     //若有@
     //"@组件id @gblvar"形式
-    if(str.search(/@/)!=-1){
+    if(str.search(/@/)!==-1){
       varObj.varType = "@str";
       var varContentTmpStart = str.search(/@/) + 1;
-      var varContentTmpEnd = str.lastIndexOf("'");
+      var varContentTmpEnd = str.lastIndexOf(quote);
       var varContentTmp = str.slice(varContentTmpStart,varContentTmpEnd);
       var varContentTmpObj = window.document.getElementById(varContentTmp);
       //取得到组件
@@ -80,8 +84,8 @@ function ucctojs(str) {
     //字符串形式
     else {
       varObj.varType = "string";
-      var varContentTmpStart = str.search(/'/) + 1;
-      var varContentTmpEnd = str.lastIndexOf("'");
+      var varContentTmpStart = str.indexOf(quote) + 1;
+      var varContentTmpEnd = str.lastIndexOf(quote);
       varObj.varContent = str.slice(varContentTmpStart,varContentTmpEnd);
     }
   }

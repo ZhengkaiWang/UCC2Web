@@ -9,6 +9,18 @@
         <body>
           <form id="Me" class="Me">
             <div id="Layer1" class="Layer1">
+              <button id="b1" type="button" name="button" onclick="Case(b1Fx0)">Case1</button>
+              <script type="text/javascript">
+                var b1Fx0="\'男\'==\'男\' Then Set:txta.Text=\"先生，您好\" Else Set:txtb.Text=\'女士，您好\'"
+              </script>
+              <button id="b2" type="button" name="button" onclick="Case(b2Fx0)">Case2</button>
+              <script type="text/javascript">
+                var b2Fx0="\'男\'==\'男2\' Then Set:txta.Text=\"先生，您好\" Else Set:txtb.Text=\'女士，您好\'"
+              </script>
+              <button id="b" type="button" name="button" onclick="Clear(bFx0)">Clear All</button>
+              <script type="text/javascript">
+                var bFx0="txta,txtb,lbl欢迎"
+              </script>
               <label id="lbl欢迎" class="lbl欢迎" ucctype="Label" onclick="">泽阳欢迎您</label>
               <img id="Button2" class="Button2" ucctype="Image" src="Data/" onclick="ShowLayer(Button2Fx0);">
                 <script>var Button2Fx0="Layer2";</script>
@@ -19,7 +31,7 @@
                 <span class="btnget" style="border:none;width:auto;height:auto;background:none;left:220.0px;top:408.0px;text-align:left;">btnget</span>
               </img>
               <input id="cmb" class="cmb" type="button" ucctype="CommandButton"  value="cmbIf-set" onclick="IF(cmbFx0);Set(cmbFx1);">
-                <script>var cmbFx0="Varz=Control3.Text==\'您好\' Then \'这是if函数\' Else \'不是您好\'";var cmbFx1="txta.Text=Varz";</script>
+                <script>var cmbFx0="Varz=Control3.Text==\'您好\' Then \'这是if函数\' Else \'不是您好\'";var cmbFx1="txta.Text,txtb.Text=Varz";</script>
               </input>
               <input id="txta" class="txta" type="text" ucctype="TextBox" style="text-align:center"  onclick="">
               </input>
@@ -28,9 +40,8 @@
                 <option>您好</option>
                 <option>世界</option>
               </select>
-
-              <input id="Control4" class="Control4" type="button" ucctype="CommandButton"  value="Replace" onclick="Replace(Control4Fx0);">
-                <script>var Control4Fx0="txtb='dsf,sdff','s','e'";</script>
+              <input id="Control4" class="Control4" type="button" ucctype="CommandButton"  value="cmblinkstring" onclick="LinkString(Control4Fx0);">
+                <script>var Control4Fx0="txtb.Text=\' \',\'@Control3\',\'@txta\'";</script>
               </input>
               <input id="txtb" class="txtb" type="text" ucctype="TextBox" style="text-align:center"  onclick="">
               </input>

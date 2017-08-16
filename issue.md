@@ -4,3 +4,4 @@
   - SavePicture
   - GetDataAdd
   - ADD
+- New 函数示例New:varID=TypeName,ID,Title,Container
