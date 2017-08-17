@@ -1,10 +1,11 @@
 - 函数名重载问题 划分规范
 - 触摸屏的生产力和妥协原则
-- 函数命名问题
+- 函数规范
   - SavePicture
   - GetDataAdd
   - ADD
   - New（示例命名问题） 函数示例New:varID=TypeName,ID,Title,Container
+  - 括号的用法标准（优化执行效率vs用户体验 var(ID1,ID2)）
 - 界限划分
   - UCC至少要能检出
     - 基本语法错误 语句形式不符合函数要求
@@ -12,3 +13,8 @@
     - 变量与函数要求相吻合
 - 定位
   - 软件？编程？
+
+- bug
+  - FillString 函数不能实现其功能
+  - Decode、Encode函数用法不是特别清楚(与网上的base64编码解码结果不同)
+  - Format函数语法：Format:var = '23','0000',但是在ucc中，第一个参数应该不加引号才会出现正确结果，这应该属于一个bug

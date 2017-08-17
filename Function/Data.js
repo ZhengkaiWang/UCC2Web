@@ -65,6 +65,16 @@ function DB(str) {
     DBrequest.send(postStr);
     console.log('...DBMysql Finished');
   }
+
+  function DBAccess() {
+
+  }
+  function DBExcel() {
+
+  }
+  function DBSqlLite() {
+
+  }
 }
 
 
@@ -73,7 +83,7 @@ function BindingDataTo(str) {
   var rtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
   str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
 
-  var rtnObj = ucctojs(rtnValue);
+  var RtnObj = ucctojs(rtnValue);
   var dataObj = ucctojs("dbChart");
 
   //记录
@@ -83,7 +93,7 @@ function BindingDataTo(str) {
   var j = 0;
   var jMax = (Object.getOwnPropertyNames(dataObj.varContent[0]).length)/2;
 
-  switch (rtnObj.getAttribute("ucctype")) {
+  switch (RtnObj.getAttribute("ucctype")) {
     case 'Report' : BindingDataToReport(); break;
     case 'Chart' : BindingDataToChart(); break;
 
@@ -95,9 +105,9 @@ function BindingDataTo(str) {
     console.log('BindingDataToReport Start...');
 
     //清空缓存
-    rtnObj.innerText = null;
+    RtnObj.innerText = null;
     //加载字段名
-    var nowRow = rtnObj.insertRow(0);
+    var nowRow = RtnObj.insertRow(0);
     while (j<jMax) {
       nowRow.insertCell(j).innerText = Object.getOwnPropertyNames(dataObj.varContent[0])[jMax+j];
       j++;
@@ -106,7 +116,7 @@ function BindingDataTo(str) {
     //加载数据
     j = 0;
     while (i<iMax) {
-      nowRow = rtnObj.insertRow(i+1);
+      nowRow = RtnObj.insertRow(i+1);
       while (j<jMax) {
         nowRow.insertCell(j).innerText = dataObj.varContent[i][j];
         j++;
@@ -121,7 +131,7 @@ function BindingDataTo(str) {
   function BindingDataToChart() {
     console.log('BindingDataToChart Start...');
 
-    var chartObj = echarts.init(rtnObj);//main是div的
+    var chartObj = echarts.init(RtnObj);//main是div的
     var option = {
         //图的标题
              title: {

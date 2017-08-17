@@ -1,4 +1,4 @@
-
+//-----------------------------------------------------= Set函数 =-----------------------------------------
 function Set(Str){
   //Return端对象处理
   var RtnStr = Str.slice(0,DividePoint(Str,'='));
@@ -15,6 +15,7 @@ function Set(Str){
   }
 }
 
+//-----------------------------------------------------= Clear =-----------------------------------------
 function Clear(Str) {
   var Obj;
   Str += ',';
@@ -26,12 +27,21 @@ function Clear(Str) {
   }
 }
 
+//-----------------------------------------------------= Get =-----------------------------------------
 function Get(Str) {
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
   RntObj.varContent = ucctojs(Str.slice(DividePoint(Str,'=')+1,Str.length)).varContent;
   push(RtnObj);
 }
 
+//-----------------------------------------------------= Clone =-----------------------------------------
+function Clone(Str) {
+  //var RtnObj = 
+  var RightObj = ucctojs(Str.slice(DividePoint(Str,'='),Str.length));
+
+}
+
+//-----------------------------------------------------= New =-----------------------------------------
 function New(Str) {
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
   var TypeNameStr =ucctojs(Str.slice(DividePoint(Str,'=')+1,DividePoint(Str,','))).varContent ;
