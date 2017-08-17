@@ -1,7 +1,7 @@
 //-----------------------------------------------------= DB函数 =-----------------------------------------
 function DB(str) {
 
-  var rtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
+  var RtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
   str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
   var typeStr = str.slice(0,str.search(/,/));
   str = str.slice(str.search(/,/)+1,str.length);
@@ -41,7 +41,7 @@ function DB(str) {
     //ajax
     var DBrequest = new XMLHttpRequest();
     var DBresponse;
-    var obj = ucctojs(rtnValue);
+    var Obj = ucctojs(RtnValue);
 
     //监听状态的回调函数
     DBrequest.onreadystatechange = function(){
@@ -51,15 +51,15 @@ function DB(str) {
           DBresponse = DBrequest.responseText;
           //JSON化
           DBresponse = JSON.parse(DBresponse);
-          obj.varType = "JSON";
-          obj.varContent = DBresponse;
+          Obj.varType = "JSON";
+          Obj.varContent = DBresponse;
         }else {
           console.error(DBrequest.statusText);
         }
       }
     };
 
-    DBrequest.open('POST', 'http://localhost/UCC_Demo_SPA/Function/DB.php', false); //同步加载 保证串行执行
+    DBrequest.open('POST', 'http://127.0.0.1:8033/Function/DB.php', false); //同步加载 保证串行执行
     DBrequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     // 发送HTTP请求
     DBrequest.send(postStr);
@@ -77,14 +77,15 @@ function DB(str) {
   }
 }
 
-
 //-----------------------------------------------------= BindingDataTo函数 =-----------------------------------------
 function BindingDataTo(str) {
-  var rtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
+  var RtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
   str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
-
-  var RtnObj = ucctojs(rtnValue);
+w
+  var RtnObj = ucctojs(RtnValue);
   var dataObj = ucctojs("dbChart");
+
+  console.log(dataObj);
 
   //记录
   var i = 0;
