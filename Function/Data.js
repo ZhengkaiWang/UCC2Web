@@ -64,35 +64,38 @@ function DB(str) {
     // 发送HTTP请求
     DBrequest.send(postStr);
     console.log('...DBMysql Finished');
-  }
+  };
 
   function DBAccess() {
 
-  }
+  };
   function DBExcel() {
 
-  }
+  };
   function DBSqlLite() {
 
-  }
+  };
 }
 
 //-----------------------------------------------------= BindingDataTo函数 =-----------------------------------------
 function BindingDataTo(str) {
   var RtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
   str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
-w
+
   var RtnObj = ucctojs(RtnValue);
   var dataObj = ucctojs("dbChart");
-
-  console.log(dataObj);
 
   //记录
   var i = 0;
   var iMax = dataObj.varContent.length;
   //字段名
   var j = 0;
-  var jMax = (Object.getOwnPropertyNames(dataObj.varContent[0]).length)/2;
+  var FieldName = Array();
+  FieldName[0] = "姓名"
+  FieldName[1] = "工号"
+  FieldName[2] = "午餐"
+  FieldName[3] = "费用"
+  var jMax = 4;
 
   switch (RtnObj.getAttribute("ucctype")) {
     case 'Report' : BindingDataToReport(); break;
@@ -110,7 +113,7 @@ w
     //加载字段名
     var nowRow = RtnObj.insertRow(0);
     while (j<jMax) {
-      nowRow.insertCell(j).innerText = Object.getOwnPropertyNames(dataObj.varContent[0])[jMax+j];
+      nowRow.insertCell(j).innerText = FieldName[j];
       j++;
     }
 
@@ -119,14 +122,13 @@ w
     while (i<iMax) {
       nowRow = RtnObj.insertRow(i+1);
       while (j<jMax) {
-        nowRow.insertCell(j).innerText = dataObj.varContent[i][j];
+        nowRow.insertCell(j).innerText = dataObj.varContent[i][FieldName[j]];
         j++;
       }
       j=0;
       i++;
     }
     console.log('...BindingDataToReport Finished');
-
   }
 
   function BindingDataToChart() {

@@ -36,7 +36,7 @@ function Get(Str) {
 
 //-----------------------------------------------------= Clone =-----------------------------------------
 function Clone(Str) {
-  //var RtnObj = 
+  //var RtnObj =
   var RightObj = ucctojs(Str.slice(DividePoint(Str,'='),Str.length));
 
 }
@@ -67,5 +67,8 @@ function New(Str) {
 
   RtnObj.varContent = NewNode.id;
   push(RtnObj);
+}
+
+function Add() {
 
 }

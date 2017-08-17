@@ -28,12 +28,10 @@
   $query = $SQLRcvStr;
   $result = $mysqli->query($query);
 
-  //echo $result->num_rows;
-  //echo $result->field_count;
 
   $arr = array();
 
-  while($row = $result->fetch_array())
+  while($row = $result->fetch_array( MYSQLI_ASSOC))
   {
     array_push($arr,$row);
     //print_r($arr);
