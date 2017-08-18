@@ -129,6 +129,10 @@ function ucctojs(str) {
       }
     }
 
+//?????
+  if (eval("typeof "+varObj.varContent+"==='number'")){
+    varObj.varContent = eval(varObj.varContent);
+  }
    return varObj;
 }
 
@@ -159,6 +163,8 @@ function throwerror(str,No) {
 function ini(str) {
   Varget = new Object() ;
   Varz = new Object() ;
+  v1 = new Object() ;
+  v2 = new Object() ;
   dbChart = new Object() ;
   HideLayer('Layer2');
   HideLayer('Layerget');

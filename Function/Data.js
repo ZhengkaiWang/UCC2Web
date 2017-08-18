@@ -181,3 +181,15 @@ function BindingDataTo(str) {
     console.log('...BindingDataToChart Finished');
   }
 }
+
+//-----------------------------------------------------= Cal =-----------------------------------------
+function Calc(Str) {
+  var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+  var RightStr = Str.slice(DividePoint(Str,'=')+1,Str.length);
+  var ExeRightStr = RightStr.replace(/\w+[0-9]\w*/g,function (word) {
+    return "ucctojs('"+word+"').varContent";
+  })
+  RtnObj.varContent = eval(ExeRightStr);
+  console.log(ExeRightStr);
+  push(RtnObj)
+}

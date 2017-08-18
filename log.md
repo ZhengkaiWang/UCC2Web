@@ -117,3 +117,4 @@
 -	Function
 	-	Clone函数完成
 	-	DB BindingDataTo函数优化
+	- 添加v1 v2
