@@ -112,3 +112,8 @@
 	-	LengthOFString函数完成
 	- New完成
 	- ShowHideScreen函数完成
+
+## 8/18
+-	Function
+	-	Clone函数完成
+	-	DB BindingDataTo函数优化

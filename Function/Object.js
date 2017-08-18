@@ -36,9 +36,16 @@ function Get(Str) {
 
 //-----------------------------------------------------= Clone =-----------------------------------------
 function Clone(Str) {
-  //var RtnObj =
-  var RightObj = ucctojs(Str.slice(DividePoint(Str,'='),Str.length));
-
+  var RightObj = ucctojs(Str.slice(DividePoint(Str,'=')+1,Str.length));
+  var RtnObj ;
+  Str = Str.slice(0,DividePoint(Str,'='));
+  Str += ',';
+  while (DividePoint(Str,',')!==-1) {
+    RtnObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
+    RtnObj.varContent = RightObj.varContent
+    push(RtnObj);
+    Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
 }
 
 //-----------------------------------------------------= New =-----------------------------------------
