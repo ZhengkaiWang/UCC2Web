@@ -162,18 +162,30 @@ function throwerror(str,No) {
 }
 
 //-----------------------------------------------------= ini函数 =-----------------------------------------
-function ini(str) {
+function ini(Str) {
+  MainFx = {varType:"MainFx",varContent:""};
   Varget = new Object() ;
   Varz = new Object() ;
   v1 = new Object() ;
   v2 = new Object() ;
   dbChart = new Object() ;
-  HideLayer('Layer2');
-  HideLayer('Layerget');
 
-  // obj = JSON.parse(str);
-  // objProptyArray = Object.getOwnPropertyNames(obj);
-  //console.log(objProptyArray);
+  var FxObj = JSON.parse(Str);
+  var FxNameList = Object.getOwnPropertyNames(FxObj);
+  var i=0;
+  while (i<FxNameList.length-1) {
+    console.log(FxNameList[i]+'('+FxObj[FxNameList[i]]+')');
+    i++
+  }
+  i = 0;
+
+  while (i<FxObj.Main.length) {
+    var MainFxName = Object.getOwnPropertyNames(FxObj.Main[i]);
+    MainFx.varContent += MainFxName+'(\''+FxObj.Main[i][MainFxName]+'\');';
+    i++;
+  }
+  eval(MainFx.varContent);
+
 }
 
 
