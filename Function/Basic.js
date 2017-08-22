@@ -121,8 +121,10 @@ function ucctojs(str) {
 
     //全局变量形式
     else{
-      //异常抛出
-      if(eval("typeof "+str+"==='object'")){
+      if(str.search(/@/)!==-1){
+        varObj.varContent = ucctojs(str.slice(1,str.length)).varContent;
+        varObj.varType = "@Var";
+      } else if(eval("typeof "+str+"==='object'")){
         varObj = eval(str);
         varObj.varType = "gblVar";
       } else if (eval("typeof "+str+"==='number'")) {

@@ -129,3 +129,5 @@
 		- !!!Basic函数 number修改 类型自动转换
 		- !!!Basic函数 '@abc'未解决
 		- !!!Basic函数 数字进去怎么办
+- Standard
+	- @Var实现
