@@ -113,6 +113,10 @@ function ucctojs(str) {
         default: break;
       }
     }
+    //防止空元素无法执行
+    if (eval("typeof "+varObj.varContent+'0'+"==='number'")){
+      varObj.varContent = eval(varObj.varContent);
+    }
   }
 
     //全局变量形式
@@ -129,10 +133,6 @@ function ucctojs(str) {
       }
     }
 
-//?????
-  if (eval("typeof "+varObj.varContent+"==='number'")){
-    varObj.varContent = eval(varObj.varContent);
-  }
    return varObj;
 }
 
@@ -143,13 +143,13 @@ function throwerror(str,No) {
 
   switch (No) {
     case 1:{
-      console.log('error:'+str+'组件不存在 做字符串处理');
+      console.log('warn:'+str+' 组件不存在 做字符串处理');
       obj.varType = "string";
       obj.varContent = "@"+str;
       break;
     }
     case 2:{
-      console.log('error:'+str+'变量不存在 做字符串处理');
+      console.log('warn:'+str+' 变量不存在 做字符串处理');
       obj.varType = "string";
       obj.varContent = str;
       break;

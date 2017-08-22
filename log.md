@@ -118,3 +118,14 @@
 	-	Clone函数完成
 	-	DB BindingDataTo函数优化
 	- 添加v1 v2
+
+## 8/21
+- Function
+	- Calc函数完成（两种情况为考虑）
+
+## 8/22
+- Function
+ 	- GetFieldValue
+		- !!!Basic函数 number修改 类型自动转换
+		- !!!Basic函数 '@abc'未解决
+		- !!!Basic函数 数字进去怎么办

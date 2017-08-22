@@ -83,11 +83,11 @@ function BindingDataTo(str) {
   str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
 
   var RtnObj = ucctojs(RtnValue);
-  var dataObj = ucctojs("dbChart");
+  var DataObj = ucctojs("dbChart");
 
   //记录
   var i = 0;
-  var iMax = dataObj.varContent.length;
+  var iMax = DataObj.varContent.length;
   //字段名
   var j = 0;
   var FieldName = Array();
@@ -122,7 +122,7 @@ function BindingDataTo(str) {
     while (i<iMax) {
       nowRow = RtnObj.insertRow(i+1);
       while (j<jMax) {
-        nowRow.insertCell(j).innerText = dataObj.varContent[i][FieldName[j]];
+        nowRow.insertCell(j).innerText = DataObj.varContent[i][FieldName[j]];
         j++;
       }
       j=0;
@@ -173,8 +173,8 @@ function BindingDataTo(str) {
 
     //添加横坐标
     while (i<iMax) {
-      option.xAxis.data[i] = dataObj.varContent[i][0];
-      option.series[0].data[i] = dataObj.varContent[i]['费用']
+      option.xAxis.data[i] = DataObj.varContent[i][0];
+      option.series[0].data[i] = DataObj.varContent[i]['费用']
       i++;
     }
     chartObj.setOption(option);
@@ -190,6 +190,53 @@ function Calc(Str) {
     return "ucctojs('"+word+"').varContent";
   })
   RtnObj.varContent = eval(ExeRightStr);
-  console.log(ExeRightStr);
   push(RtnObj)
+}
+
+function GetFieldValue(Str) {
+  var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+  var DataObj = ucctojs(Str.slice(DividePoint(Str,'=')+1,DividePoint(Str,',')));
+  Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  var Lmt = ucctojs(Str.slice(0,DividePoint(Str,',')));
+  var FieldName = ucctojs(Str.slice(DividePoint(Str,',')+1,Str.length));
+  //console.log(RtnObj,"\n",DataObj,"\n",Lmt,"\n",FieldName);
+  var i = 0;
+  var OutputObj = JSON.parse(JSON.stringify(DataObj));
+
+
+  if (Lmt.varType==="number") {
+    if (Lmt.varContent<=DataObj.varContent.length) {
+      OutputObj.varContent[0] = OutputObj.varContent[Lmt.varContent];
+      OutputObj.varContent.length = 1;
+    }
+  } else if (DividePoint(Lmt.varContent,"=")!==-1) {
+    var LmtFieldObj = ucctojs(Lmt.varContent.slice(0,DividePoint(Lmt.varContent,'=')));
+    var LmtValueObj = ucctojs(Lmt.varContent.slice(DividePoint(Lmt.varContent,'=')+1,Lmt.varContent.length));
+    while (i<DataObj.varContent.length) {
+      console.log();
+      if (DataObj.varContent[i][LmtFieldObj.varContent]===LmtValueObj.varContent) {
+        OutputObj.varContent[0] = OutputObj.varContent[i];
+        OutputObj.varContent.length = 1;
+      }
+      i++;
+    }
+  }
+
+  if (RtnObj.varType==="toolId") {
+    if (RtnObj.getAttribute("ucctype")==="Report") {
+      RtnObj.innerText = null;
+      //加载字段名
+      i = 0;
+      var nowRow = RtnObj.insertRow(0);
+      nowRow.insertCell(0).innerText = FieldName.varContent;
+      //加载数据
+      while (i<OutputObj.varContent.length) {
+        nowRow = RtnObj.insertRow(i+1);
+        nowRow.insertCell(0).innerText = OutputObj.varContent[i][FieldName.varContent];
+        i++;
+      }
+    }
+  } else {
+    RtnObj.varContent = OutputObj.varContent;
+  }
 }
