@@ -114,8 +114,8 @@ function ucctojs(str) {
       }
     }
     //防止空元素无法执行
-    if (eval("typeof "+varObj.varContent+'0'+"==='number'")){
-      varObj.varContent = eval(varObj.varContent);
+    if (!isNaN(varObj.varContent)){
+      varObj.varContent = parseFloat(varObj.varContent);
     }
   }
 
@@ -127,8 +127,8 @@ function ucctojs(str) {
       } else if(eval("typeof "+str+"==='object'")){
         varObj = eval(str);
         varObj.varType = "gblVar";
-      } else if (eval("typeof "+str+"==='number'")) {
-        varObj.varContent = eval(str);
+      } else if (!isNaN(varObj.varContent)) {
+        varObj.varContent = parseFloat(varObj.varContent);
         varObj.varType = "number";
       } else {
         return throwerror(str,2);
@@ -169,11 +169,16 @@ function ini(Str) {
   v1 = new Object() ;
   v2 = new Object() ;
   dbChart = new Object() ;
+  HideLayer("Layer2");
+  HideLayer("Layerget")
 
   var FxObj = JSON.parse(Str);
   var FxNameList = Object.getOwnPropertyNames(FxObj);
   var i=0;
   while (i<FxNameList.length-1) {
+    if (typeof FxObj[FxNameList[i]]!=="Object") {
+
+    }
     console.log(FxNameList[i]+'('+FxObj[FxNameList[i]]+')');
     i++
   }

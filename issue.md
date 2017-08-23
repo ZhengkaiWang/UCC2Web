@@ -6,28 +6,24 @@
   - ADD
   - New（示例命名问题） 函数示例New:varID=TypeName,ID,Title,Container
   - 括号的用法标准（优化执行效率vs用户体验 var(ID1,ID2)）
+  - var的函数 组件能不能用(函数描述)
 - 界限划分
   - UCC至少要能检出
     - 基本语法错误 语句形式不符合函数要求
     - 变量 使用未声明的变量、未出现的ID等
     - 变量与函数要求相吻合
-- 定位
-  - 软件？编程？
+
+- 思考
+  - 实例化问题
+    - B/S的实例化问题 不同用户操作服务器??
+    - Clone deep copy
+    - 定位
+      - 软件？编程？
 
 - bug
-  - FillString 函数不能实现其功能
-  - Decode、Encode函数用法不是特别清楚(与网上的base64编码解码结果不同)
+  - Decode、Encode函数用法不是特别清楚(与网上的base64编码解码结果不同)??
   - Format函数语法：Format:var = '23','0000',但是在ucc中，第一个参数应该不加引号才会出现正确结果，这应该属于一个bug
   - Exit退出后会留下runtime框 下次运行不覆盖
-
-- 实例化问题
-  - B/S的实例化问题 不同用户操作服务器??
-  - Clone deep copy
-
-- Calc: 取模运算
-
-- var的函数 组件能不能用
-
-- input box的输入??
-
-- ucc里面"123"=123
+- issue
+  - Calc: 取模运算mod->%(??)
+  - ucc里面"123"=123
