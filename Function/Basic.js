@@ -121,14 +121,15 @@ function ucctojs(str) {
 
     //全局变量形式
     else{
+
       if(str.search(/@/)!==-1){
         varObj.varContent = ucctojs(str.slice(1,str.length)).varContent;
         varObj.varType = "@Var";
       } else if(eval("typeof "+str+"==='object'")){
         varObj = eval(str);
         varObj.varType = "gblVar";
-      } else if (!isNaN(varObj.varContent)) {
-        varObj.varContent = parseFloat(varObj.varContent);
+      } else if (!isNaN(str.slice(0,str.length))) {
+        varObj.varContent = parseFloat(str.slice(0,str.length));
         varObj.varType = "number";
       } else {
         return throwerror(str,2);
