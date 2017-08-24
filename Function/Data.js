@@ -363,3 +363,31 @@ function math(Str){
     push(RtnObj);
 
 }
+
+function GetRandomNumber(Str){
+        Str += ',';
+        var RtnStr = Str.slice(0,DividePoint(Str,'='));
+        var RtnObj = ucctojs(RtnStr);
+        Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+        var sonObjArray = new Array();
+        var i=0;
+        while (DividePoint(Str,',')!==-1) {
+            if(Str.slice(0,DividePoint(Str,','))==""){
+                console.log(sonObjArray.length);
+                break;
+            }
+          sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+          i++;
+          Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+      }
+
+      if (sonObjArray.length==0) {
+          RtnObj.varContent = "";
+      }else if(sonObjArray.length>=1&&typeof(sonObjArray[0].varContent)=='number') {
+          RtnObj.varContent = parseInt(Math.random()*sonObjArray[0].varContent,10)+1;
+      }else{
+            RtnObj.varContent = "";
+      }
+        push(RtnObj);
+
+      }
