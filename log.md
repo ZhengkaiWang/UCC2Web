@@ -141,3 +141,4 @@
 - Function
 	- math函数完成90%（between,ceiling(ucc有bug))
 	- GetRandomNumber函数完成
+  - ini优化
