@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Demo</title>
+      <link rel="stylesheet" href="demo_RunAction.css">
+        <link rel="stylesheet" href="http://localhost/UCC_Demo_SPA/Tool/jquery-ui.css">
+        </head>
+        <body>
+          <form id="Me" class="Me">
+            <div id="Layer1" class="Layer1">
+              <label id="Button1" class="Button1" ucctype="Label" onclick="">Label1</label>
+              <input id="Control1" class="Control1" type="button" ucctype="CommandButton"  value="CommandButton1" onclick="RunAction(Control1Fx0);">
+                <script>var Control1Fx0="fun_Set";</script>
+              </input>
+            </div>
+          </form>
+          <script>var Fx0 =' {"[Action]":"fun_GCP","[Shift]":"0","fun_GCP":"GetCursorPos:VarPos;","VarPos":"649/580","[Index]":"2","[Button]":"0","[Event]":"MouseMove","[OnWho]":"Layer1","[y]":"205","%4":"26","%3":"0","%2":"0","%1":"Layer1","fun_Set":"RunAction:fun_GCP;Set:Button1.Caption=@VarPos;","%5":"205","[x]":"26","[ID]":"Layer1","[sender]":"Control.Control1"}'</script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/Basic.js">
+          </script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/Data.js">
+          </script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/Logic.js">
+          </script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/Object.js">
+          </script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/System.js">
+          </script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/String.js">
+          </script>
+          <script src="http://localhost/UCC_Demo_SPA/Function/UI.js">
+          </script>
+        </body>
+        <script>ini(Fx0)</script>
+        <script src="http://localhost/UCC_Demo_SPA/Tool/jquery-3.2.1.min.js">
+        </script>
+        <script src="http://localhost/UCC_Demo_SPA/Tool/jquery-ui.js">
+        </script>
+        <script src="http://localhost/UCC_Demo_SPA/Tool/jquery.ui.datepicker-zh-CN.js">
+        </script>
+        <script src="http://localhost/UCC_Demo_SPA/Tool/echarts.js">
+        </script>
+      </html>

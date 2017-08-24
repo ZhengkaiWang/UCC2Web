@@ -173,18 +173,18 @@ function ini(Str) {
   HideLayer("Layerget")
 
   var FxObj = JSON.parse(Str);
-  console.log(FxObj);
   var FxNameList = Object.getOwnPropertyNames(FxObj);
   var i=0;
   while (i<FxNameList.length-1) {
     if (typeof FxObj[FxNameList[i]]!=="Object") {
-      //eval(FxNameList[i]+"={varContent:"+"\'"+FxObj[FxNameList[i]]+"\'"+"}")
+      eval(FxNameList[i]+"={varContent:"+"\'"+FxObj[FxNameList[i]]+"\'"+"}")
+    } else {
+      console.log(FxNameList[i]+'('+FxObj[FxNameList[i]]+')');
     }
-    console.log(FxNameList[i]+'('+FxObj[FxNameList[i]]+')');
     i++
   }
-  i = 0;
 
+  i = 0;
   while (i<FxObj.Main.length) {
     var MainFxName = Object.getOwnPropertyNames(FxObj.Main[i]);
     MainFx.varContent += MainFxName+'(\''+FxObj.Main[i][MainFxName]+'\');';
