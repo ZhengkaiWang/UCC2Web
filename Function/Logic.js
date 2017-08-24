@@ -44,6 +44,7 @@ function Case(Str) {
 
 //-----------------------------------------------------= IF =-----------------------------------------
 function IF(Str) {
+
   var Rst;
   var RtnStr = null;
   if(DividePoint(Str,'=')!==-1){
@@ -86,4 +87,5 @@ function IF(Str) {
     RtnObj.varContent = Rst;
     push(RtnObj);
   } else {return Rst;}
+
 }

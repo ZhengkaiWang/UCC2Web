@@ -135,7 +135,6 @@ function ucctojs(str) {
         return throwerror(str,2);
       }
     }
-
    return varObj;
 }
 
@@ -174,11 +173,12 @@ function ini(Str) {
   HideLayer("Layerget")
 
   var FxObj = JSON.parse(Str);
+  console.log(FxObj);
   var FxNameList = Object.getOwnPropertyNames(FxObj);
   var i=0;
   while (i<FxNameList.length-1) {
     if (typeof FxObj[FxNameList[i]]!=="Object") {
-
+      //eval(FxNameList[i]+"={varContent:"+"\'"+FxObj[FxNameList[i]]+"\'"+"}")
     }
     console.log(FxNameList[i]+'('+FxObj[FxNameList[i]]+')');
     i++
