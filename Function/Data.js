@@ -240,3 +240,126 @@ function GetFieldValue(Str) {
     RtnObj.varContent = OutputObj.varContent;
   }
 }
+
+//-----------------------------------------------------= Math =-----------------------------------------
+function math(Str){
+    Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+        if(Str.slice(0,DividePoint(Str,','))==""){
+            break;
+        }
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+  if (sonObjArray.length<2) {
+      RtnObj.varContent = "";
+  }else if(sonObjArray.length>=2&&typeof(sonObjArray[1].varContent)=='number'){
+   switch (sonObjArray[0].varContent.toLowerCase()) {
+       case 'abs':
+           RtnObj.varContent = Math.abs(sonObjArray[1].varContent);
+           break;
+       case 'atn':
+           RtnObj.varContent = Math.atan(sonObjArray[1].varContent);
+           break;
+       case 'cos':
+           RtnObj.varContent = Math.cos(sonObjArray[1].varContent);
+           break;
+       case 'exp':
+           RtnObj.varContent = Math.exp(sonObjArray[1].varContent);
+           break;
+       case 'int':
+           RtnObj.varContent = Math.floor(sonObjArray[1].varContent);
+           break;
+       case 'log':
+           RtnObj.varContent = Math.log(sonObjArray[1].varContent);
+           break;
+       case 'sgn':
+            if(Number(sonObjArray[1].varContent)<0){
+                RtnObj.varContent = -1;
+            }
+            else if(Number(sonObjArray[1].varContent)>0){
+                RtnObj.varContent = 1;
+            }
+            else{
+                RtnObj.varContent = 0;
+            }
+           break;
+       case 'sqr':
+           RtnObj.varContent = Math.sqrt(sonObjArray[1].varContent);
+           break;
+       case 'sin':
+           RtnObj.varContent = Math.sin(sonObjArray[1].varContent);
+           break;
+       case 'tan':
+           RtnObj.varContent = Math.tan(sonObjArray[1].varContent);
+           break;
+       case 'round':
+           if(sonObjArray.length==2){
+               RtnObj.varContent = Math.round(sonObjArray[1].varContent);
+           }
+           else if(sonObjArray.length>2&&typeof(sonObjArray[2].varContent)=='number'){
+               RtnObj.varContent = Math.round(sonObjArray[1].varContent * Math.pow(10,sonObjArray[2].varContent)) / Math.pow(10,sonObjArray[2].varContent);
+           }
+           else{
+                RtnObj.varContent = Math.round(sonObjArray[1].varContent);
+           }
+           break;
+       case 'max':
+           RtnObj.varContent=Number.MIN_VALUE ;
+           for(var i =1;i<sonObjArray.length-1;i++){
+               if(typeof(sonObjArray[i].varContent)!='number'){
+                   continue;
+               }
+               RtnObj.varContent = Math.max(sonObjArray[i].varContent,RtnObj.varContent);
+           }
+           break;
+       case 'min':
+           RtnObj.varContent=Number.MAX_VALUE ;
+           for(var i =1;i<sonObjArray.length-1;i++){
+               if(typeof(sonObjArray[i].varContent)!='number'){
+                   continue;
+               }
+               RtnObj.varContent = Math.min(sonObjArray[i].varContent,RtnObj.varContent);
+           }
+           break;
+       case 'average':
+           var temp = 0;
+               for(var i =1;i<sonObjArray.length;i++){
+                   if(typeof(sonObjArray[i].varContent)!='number'){
+                       continue;
+                   }
+                  temp+= sonObjArray[i].varContent;
+               }
+               RtnObj.varContent = temp/(sonObjArray.length-1);
+           break;
+    //    case 'ceiling':
+    //        if(sonObjArray.length==2){
+    //            RtnObj.varContent = Math.ceil(sonObjArray[1].varContent);
+    //        }
+    //        else if(sonObjArray.length>2&&typeof(sonObjArray[2].varContent)=='number'){
+    //            onObjArray[1].varContent + sonObjArray[2].varContent
+    //            RtnObj.varContent = Math.round(sonObjArray[1].varContent * Math.pow(10,sonObjArray[2].varContent)) / Math.pow(10,sonObjArray[2].varContent);
+    //        }
+    //        else{
+    //             RtnObj.varContent = Math.round(sonObjArray[1].varContent);
+    //        }
+    //        break;
+
+       default:
+         RtnObj.varContent = "";
+   }
+  }
+  else{
+     RtnObj.varContent = "";
+  }
+
+
+    push(RtnObj);
+
+}
