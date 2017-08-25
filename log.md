@@ -141,3 +141,4 @@
 - Function
 	- math函数完成90%（between,ceiling(ucc有bug))
 	- ini优化
+	- ini函数 初始化变量 均看成字符串？？ 
