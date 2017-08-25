@@ -113,10 +113,6 @@ function GetDateDiff(Str){
       i++;
       Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   }
-console.log(sonObjArray.length);
-console.log(sonObjArray[0]);
-console.log(sonObjArray[1]);
-console.log(sonObjArray[2]);
 
   if (sonObjArray.length<3) {
       RtnObj.varContent = "";
