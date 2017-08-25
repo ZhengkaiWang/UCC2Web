@@ -82,7 +82,7 @@ function GetDateTime(Str) {
       case "WEEKDAY":
       break;
       default:
-        
+
     }
   } else if (DividePoint(Str,'=')!==-1) {
     var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
@@ -94,4 +94,88 @@ function GetDateTime(Str) {
     RtnObj.varContent = DateObj.getFullYear()+'-'+DateObj.getMonth()+'-'+DateObj.getDay()+' '+DateObj.getHours()+':'+DateObj.getMinutes()+':'+DateObj.getSeconds();
   }
   DateObj = null;
+}
+function GetDateDiff(Str){
+
+
+    Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+        if(Str.slice(0,DividePoint(Str,','))==""){
+            console.log(sonObjArray.length);
+            break;
+        }
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+console.log(sonObjArray.length);
+console.log(sonObjArray[0]);
+console.log(sonObjArray[1]);
+console.log(sonObjArray[2]);
+
+  if (sonObjArray.length<3) {
+      RtnObj.varContent = "";
+  }else if(sonObjArray.length>=3) {
+      var dateBegin=new Date(sonObjArray[1].varContent);  //开始时间
+      var dateEnd=new Date(sonObjArray[2].varContent);    //结束时间
+      var dateDiff =  dateEnd.getTime() - dateBegin.getTime();
+      var minutes = 1000 * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+       switch (sonObjArray[0].varContent.toLowerCase()) {
+           case 'yyyy':
+                RtnObj.varContent = dateEnd.getFullYear()-dateBegin.getFullYear();
+                break;
+           case 'q':
+                RtnObj.varContent = Math.ceil(((dateEnd.getFullYear()-dateBegin.getFullYear())*12+dateEnd.getMonth()-dateBegin.getMonth())/3);
+                break;
+           case 'm':
+                RtnObj.varContent = (dateEnd.getFullYear()-dateBegin.getFullYear())*12+(dateEnd.getMonth()-dateBegin.getMonth());
+                break;
+        //    case 'y':
+        //         break;
+
+           case 'w':
+               RtnObj.varContent =parseInt(dateDiff/days);
+               if(dateDiff/days>0&&dateEnd.getHours()<=dateBegin.getHours()){
+                   RtnObj.varContent=RtnObj.varContent+1;
+               }
+                RtnObj.varContent =parseInt(RtnObj.varContent/7);
+                break;
+           case 'd':
+                RtnObj.varContent =parseInt(dateDiff/days);
+                if(dateDiff/days>0&&dateEnd.getHours()<=dateBegin.getHours()){
+                    RtnObj.varContent=RtnObj.varContent+1;
+                }
+                break;
+        //    case 'ww':
+        //         break;
+           case 'h':
+                RtnObj.varContent = parseInt(dateDiff/hours);
+                if(dateDiff/hours>0&&dateEnd.getMinutes()<=dateBegin.getMinutes()){
+                    RtnObj.varContent=RtnObj.varContent+1;
+                }
+                break;
+           case 'n':
+                RtnObj.varContent = parseInt(dateDiff/minutes);
+                if(dateDiff/minutes>0&&dateEnd.getSeconds()<=dateBegin.getSeconds()){
+                    RtnObj.varContent=RtnObj.varContent+1;
+                }
+                break;
+           case 's':
+                RtnObj.varContent = parseInt(dateDiff/1000);
+                break;
+           default:
+                RtnObj.varContent = "";
+       }
+  }else{
+        RtnObj.varContent = "";
+  }
+    push(RtnObj);
 }
