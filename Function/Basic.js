@@ -163,34 +163,56 @@ function throwerror(str,No) {
 
 //-----------------------------------------------------= ini函数 =-----------------------------------------
 function ini(Str) {
-  MainFx = {varType:"MainFx",varContent:""};
-  Varget = new Object() ;
-  Varz = new Object() ;
-  v1 = new Object() ;
-  v2 = new Object() ;
-  dbChart = new Object() ;
-  HideLayer("Layer2");
-  HideLayer("Layerget")
+  var MainFx = {varType:"MainFx",varContent:""};
+  var exe =new Array();
 
   var FxObj = JSON.parse(Str);
-  console.log(FxObj);
-  var FxNameList = Object.getOwnPropertyNames(FxObj);
+  var FxObjNameList = Object.getOwnPropertyNames(FxObj);
   var i=0;
-  while (i<FxNameList.length-1) {
-    if (typeof FxObj[FxNameList[i]]!=="Object") {
-      //eval(FxNameList[i]+"={varContent:"+"\'"+FxObj[FxNameList[i]]+"\'"+"}")
+  var iMax = FxObjNameList.length;
+
+  if (typeof FxObj.Main!=="undefined") {
+    iMax = FxObjNameList.length-1;
+  }
+
+  while (i<iMax) {
+    if (typeof FxObj[FxObjNameList[i]]!=="object") {
+      //console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
+      eval(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}")
+    } else {
+      eval(FxObjNameList[i]+"={varContent:"+"\'\'}")
+      var NowFxObj = FxObj[FxObjNameList[i]];
+      exe[i] = "";
+      var j=0;
+      while (j<NowFxObj.length) {
+        //console.log(NowFxObj);
+        //NowFxObj内部是 [{key1:value1},{key2:value2},...]
+        var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
+        exe[i] +=j+':'+jFxName+'(\''+NowFxObj[j][jFxName]+'\'),';
+        j++;
+      }
+      var FxRealObj = ucctojs(FxObjNameList[i]);
+      var ii = i;
+      FxRealObj.varContent = function () {
+        console.log("{"+exe[ii]+"}");
+        return exe[ii];
+      }
+      console.log(FxRealObj.varContent());
+      console.log(FxObjNameList[i],exe);
     }
-    console.log(FxNameList[i]+'('+FxObj[FxNameList[i]]+')');
     i++
   }
-  i = 0;
 
-  while (i<FxObj.Main.length) {
-    var MainFxName = Object.getOwnPropertyNames(FxObj.Main[i]);
-    MainFx.varContent += MainFxName+'(\''+FxObj.Main[i][MainFxName]+'\');';
-    i++;
+
+  var k = 0;
+  if (typeof FxObj.Main!=="undefined") {
+    while (k<FxObj.Main.length) {
+      var MainFxName = Object.getOwnPropertyNames(FxObj.Main[k]);
+      MainFx.varContent += MainFxName+'(\''+FxObj.Main[k][MainFxName]+'\');';
+      k++;
+    }
+    eval(MainFx.varContent);
   }
-  eval(MainFx.varContent);
 
 }
 
