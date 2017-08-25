@@ -27,3 +27,8 @@
 - issue
   - Calc: 取模运算mod->%(??)
   - ucc里面"123"=123
+-------------------------------------------------------------------------------
+- 8.25
+- issue
+  - Standard  DB:db数据集=Access,'@txtAccessFile','',SQL @txtSQL.text ; sql语句中加入变量从前缀改为参数
+  - menu重绘
