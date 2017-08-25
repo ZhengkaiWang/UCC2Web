@@ -163,38 +163,46 @@ function throwerror(str,No) {
 
 //-----------------------------------------------------= ini函数 =-----------------------------------------
 function ini(Str) {
-  MainFx = {varType:"MainFx",varContent:""};
-  var exe = {varType:"MainFx",varContent:""};
+  var MainFx = {varType:"MainFx",varContent:""};
+  var exe =new Array();
 
   var FxObj = JSON.parse(Str);
   var FxObjNameList = Object.getOwnPropertyNames(FxObj);
   var i=0;
-  var ij = 0;
   var iMax = FxObjNameList.length;
 
   if (typeof FxObj.Main!=="undefined") {
     iMax = FxObjNameList.length-1;
   }
+
   while (i<iMax) {
     if (typeof FxObj[FxObjNameList[i]]!=="object") {
-      console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
+      //console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
       eval(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}")
-        console.log(FxObjNameList[i]+'('+FxObj[FxObjNameList[i]]+')',1);
     } else {
-      while (ij<FxObj[FxObjNameList[i]].length) {
-        var NowFxObj = FxObj[FxObjNameList[i]];
-        console.log(NowFxObj);
+      eval(FxObjNameList[i]+"={varContent:"+"\'\'}")
+      var NowFxObj = FxObj[FxObjNameList[i]];
+      exe[i] = "";
+      var j=0;
+      while (j<NowFxObj.length) {
+        //console.log(NowFxObj);
         //NowFxObj内部是 [{key1:value1},{key2:value2},...]
-        var ijFxName = Object.getOwnPropertyNames(NowFxObj[ij]);
-        console.log(NowFxObj[ij]);
-        exe += ijFxName+'(\''+NowFxObj[ij][ijFxName]+'\');';
-        ij++;
+        var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
+        exe[i] +=j+':'+jFxName+'(\''+NowFxObj[j][jFxName]+'\'),';
+        j++;
       }
-      console.log(exe);
-      //eval(exe);
-        }
+      var FxRealObj = ucctojs(FxObjNameList[i]);
+      var ii = i;
+      FxRealObj.varContent = function () {
+        console.log("{"+exe[ii]+"}");
+        return exe[ii];
+      }
+      console.log(FxRealObj.varContent());
+      console.log(FxObjNameList[i],exe);
+    }
     i++
   }
+
 
   var k = 0;
   if (typeof FxObj.Main!=="undefined") {
