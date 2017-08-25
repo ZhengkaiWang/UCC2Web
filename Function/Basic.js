@@ -200,7 +200,7 @@ function ini(Str) {
   if (typeof FxObj.Main!=="undefined") {
     while (k<FxObj.Main.length) {
       var MainFxName = Object.getOwnPropertyNames(FxObj.Main[k]);
-      MainFx.varContent += MainFxName[k]+'(\''+FxObj.Main[k][MainFxName]+'\');';
+      MainFx.varContent += MainFxName+'(\''+FxObj.Main[k][MainFxName]+'\');';
       k++;
     }
     eval(MainFx.varContent);
