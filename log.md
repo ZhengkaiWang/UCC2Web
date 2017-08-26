@@ -147,7 +147,10 @@
 ## 8/25
 - Function
     - GetFileNameFromURI
+	- GetDateDiff
+## 8/26
+- Function
+    - FillString函数完成
     - GetDateDiff
-
 	- ini优化
 	- ini函数 初始化变量 均看成字符串？？ 
