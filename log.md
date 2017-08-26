@@ -145,3 +145,6 @@
 - Function
     - GetFileNameFromURI
 	- GetDateDiff
+## 8/26
+- Function
+    - FillString函数完成
