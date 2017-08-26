@@ -8,7 +8,7 @@ function LinkString(str) {
   var sonStrArray = new Array();
   var sonObjArray = new Array();
   var i = 0;
-
+  RtnObj.varContent="";
   while (str.search(/,/)!==-1) {
     sonObjArray[i] = ucctojs(str.slice(0,DividePoint(str,',')));
     RtnObj.varContent += sonObjArray[i].varContent
@@ -18,7 +18,6 @@ function LinkString(str) {
   sonObjArray[i] = ucctojs(str);
   RtnObj.varContent += sonObjArray[i].varContent;
   push(RtnObj);
-
 }
 //js的函数语句处理形式为：GetAsc:'asefsd','-';结果与ucc中的GetAsc:asefsd,-;结果
  function GetAsc(Str){
