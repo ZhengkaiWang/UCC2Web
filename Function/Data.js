@@ -373,7 +373,6 @@ function GetRandomNumber(Str){
         var i=0;
         while (DividePoint(Str,',')!==-1) {
             if(Str.slice(0,DividePoint(Str,','))==""){
-                console.log(sonObjArray.length);
                 break;
             }
           sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
