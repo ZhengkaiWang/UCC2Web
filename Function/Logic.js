@@ -94,3 +94,7 @@ function RunAction(Str) {
   //console.log(ucctojs(Str).varContent);
   eval(ucctojs(Str).varContent)
 }
+
+function ExitAction() {
+  throw new Error('ExitAction');
+}

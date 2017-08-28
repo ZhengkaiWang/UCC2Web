@@ -153,4 +153,11 @@
     - FillString函数完成
     - GetDateDiff
 	- ini优化
-	- ini函数 初始化变量 均看成字符串？？ 
+	- ini函数 初始化变量 均看成字符串？？
+
+## 8/28
+- Function
+	- ExitAction 通过抛出error实现
+	- MsgBox 通过alert实现
+	- init修改名称
+	- RunAction实现

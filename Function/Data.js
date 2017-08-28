@@ -389,4 +389,8 @@ function GetRandomNumber(Str){
       }
         push(RtnObj);
 
-      }
+}
+
+function MsgBox(Str) {
+  alert(Str);
+}

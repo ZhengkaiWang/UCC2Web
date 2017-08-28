@@ -206,6 +206,7 @@ function init(Str) {
       MainFx.varContent += MainFxName+'(\''+FxObj.Main[k][MainFxName]+'\');';
       k++;
     }
+    console.log(MainFx.varContent);
     eval(MainFx.varContent);
   }
 }
