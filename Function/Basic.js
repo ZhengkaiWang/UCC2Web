@@ -162,7 +162,7 @@ function throwerror(str,No) {
 }
 
 //-----------------------------------------------------= ini函数 =-----------------------------------------
-function ini(Str) {
+function init(Str) {
   var MainFx = {varType:"MainFx",varContent:""};
   var exe =new Array();
 
