@@ -89,3 +89,8 @@ function IF(Str) {
   } else {return Rst;}
 
 }
+
+function RunAction(Str) {
+  //console.log(ucctojs(Str).varContent);
+  eval(ucctojs(Str).varContent)
+}

@@ -121,11 +121,11 @@ function ucctojs(str) {
 
     //全局变量形式
     else{
-
       if(str.search(/@/)!==-1){
         varObj.varContent = ucctojs(str.slice(1,str.length)).varContent;
         varObj.varType = "@Var";
       } else if(eval("typeof "+str+"==='object'")){
+
         varObj = eval(str);
         varObj.varType = "gblVar";
       } else if (!isNaN(str.slice(0,str.length))) {
@@ -194,11 +194,10 @@ function ini(Str) {
       }
       var FxRealObj = ucctojs(FxObjNameList[i]);
       FxRealObj.varContent = exe[i];
-      console.log(FxRealObj.varContent);
+      //console.log(FxRealObj.varContent);
     }
     i++
   }
-
 
   var k = 0;
   if (typeof FxObj.Main!=="undefined") {
@@ -209,7 +208,6 @@ function ini(Str) {
     }
     eval(MainFx.varContent);
   }
-
 }
 
 
