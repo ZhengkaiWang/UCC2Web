@@ -180,6 +180,7 @@ function ini(Str) {
       //console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
       eval(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}")
     } else {
+      //初始化为全局变量
       eval(FxObjNameList[i]+"={varContent:"+"\'\'}")
       var NowFxObj = FxObj[FxObjNameList[i]];
       exe[i] = "";
@@ -188,17 +189,12 @@ function ini(Str) {
         //console.log(NowFxObj);
         //NowFxObj内部是 [{key1:value1},{key2:value2},...]
         var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
-        exe[i] +=j+':'+jFxName+'(\''+NowFxObj[j][jFxName]+'\'),';
+        exe[i] +=jFxName+'(\''+NowFxObj[j][jFxName]+'\');';
         j++;
       }
       var FxRealObj = ucctojs(FxObjNameList[i]);
-      var ii = i;
-      FxRealObj.varContent = function () {
-        console.log("{"+exe[ii]+"}");
-        return exe[ii];
-      }
-      console.log(FxRealObj.varContent());
-      console.log(FxObjNameList[i],exe);
+      FxRealObj.varContent = exe[i];
+      console.log(FxRealObj.varContent);
     }
     i++
   }
