@@ -226,3 +226,52 @@ function LengthOFString(Str){
     push(RtnObj);
 
 }
+
+function FillString(Str){
+	Str += ',';
+    var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+        if(Str.slice(0,DividePoint(Str,','))==""){
+            break;
+        }
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+  if (sonObjArray.length<3||typeof(sonObjArray[1].varContent)!='number') {
+	  if(sonObjArray.length<1){
+		  RtnObj.varContent = "";
+	  }else{
+		  RtnObj.varContent = sonObjArray[0].varContent;
+	  }
+      
+  }else if(sonObjArray.length==3) {
+	  var length2 = sonObjArray[1].varContent-sonObjArray[0].varContent.length;
+	  RtnObj.varContent = sonObjArray[0].varContent;
+	  for(var i = 0;i<length2;i++){
+		  RtnObj.varContent = RtnObj.varContent+sonObjArray[2].varContent;
+	  }
+ }else if(sonObjArray.length>3) {
+     if(sonObjArray[3].varContent===1){
+		  var length2 = sonObjArray[1].varContent-sonObjArray[0].varContent.length;
+	      RtnObj.varContent = sonObjArray[0].varContent;
+		  for(var i = 0;i<length2;i++){
+			  RtnObj.varContent = sonObjArray[2].varContent+RtnObj.varContent;
+		  } 
+	 }
+	  else{
+		  var length2 = sonObjArray[1].varContent-sonObjArray[0].varContent.length;
+		  RtnObj.varContent = sonObjArray[0].varContent;
+		  for(var i = 0;i<length2;i++){
+			  RtnObj.varContent = RtnObj.varContent+sonObjArray[2].varContent;
+		  }  
+	  }
+
+  }
+
+    push(RtnObj);
+}

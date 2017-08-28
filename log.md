@@ -140,12 +140,17 @@
 ## 8/24
 - Function
 	- math函数完成90%（between,ceiling(ucc有bug))
+	- GetRandomNumber函数完成
+  - ini优化
 
 	- GetRandomNumber函数完成
 ## 8/25
 - Function
     - GetFileNameFromURI
-
+	- GetDateDiff
+## 8/26
+- Function
+    - FillString函数完成
+    - GetDateDiff
 	- ini优化
 	- ini函数 初始化变量 均看成字符串？？ 
-
