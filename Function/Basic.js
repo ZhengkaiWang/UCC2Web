@@ -177,7 +177,7 @@ function init(Str) {
 
   while (i<iMax) {
     if (typeof FxObj[FxObjNameList[i]]!=="object") {
-      //console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
+      console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
       eval(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}")
     } else {
       //初始化为全局变量
