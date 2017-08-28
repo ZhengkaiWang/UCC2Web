@@ -59,7 +59,7 @@ function DB(str) {
       }
     };
 
-    DBrequest.open('POST', 'http://127.0.0.1:8033/Function/DB.php', false); //同步加载 保证串行执行
+    DBrequest.open('POST', 'http://127.0.0.1/Function/DB.php', false); //同步加载 保证串行执行
     DBrequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     // 发送HTTP请求
     DBrequest.send(postStr);
@@ -94,7 +94,7 @@ function BindingDataTo(str) {
   FieldName[0] = "姓名"
   FieldName[1] = "工号"
   FieldName[2] = "午餐"
-  FieldName[3] = "费用"
+  FieldName[3] = "价格"
   var jMax = 4;
 
   switch (RtnObj.getAttribute("ucctype")) {
@@ -168,13 +168,13 @@ function BindingDataTo(str) {
          }]
          };
 
-    option.series[0].name = '费用';
-    option.legend.data[0] = '费用';
+    option.series[0].name = '价格';
+    option.legend.data[0] = '价格';
 
     //添加横坐标
     while (i<iMax) {
-      option.xAxis.data[i] = DataObj.varContent[i][0];
-      option.series[0].data[i] = DataObj.varContent[i]['费用']
+      option.xAxis.data[i] = DataObj.varContent[i]['姓名'];
+      option.series[0].data[i] = DataObj.varContent[i]['价格']
       i++;
     }
     chartObj.setOption(option);

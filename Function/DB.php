@@ -1,5 +1,6 @@
 <?php
-
+  header("Access-Control-Allow-Origin: *");
+  
   $typeRcvStr = $_POST['typeStr'];
   $serverNameRcvStr = $_POST['serverName'];
   $DBNameRcvStr = $_POST['DBName'];
