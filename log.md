@@ -166,3 +166,4 @@
 	区分大小写？？
 	Button（id1，di2）？？
 	var。value？？
+	Forecolor??
