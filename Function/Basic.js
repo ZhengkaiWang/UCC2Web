@@ -29,7 +29,7 @@ function ucctojs(str) {
   //判断是否有 ".属性值"
   if(str.indexOf('.')!==-1){
     point = str.indexOf('.');
-    propty = str.slice(point,str.length);
+    propty = str.slice(point+1,str.length);
   }
 
   //若有引号
@@ -66,6 +66,9 @@ function ucctojs(str) {
             case "Label" : varObj.varContent = varContentTmpObj.innerText; break;
             case "TextBox" : varObj.varContent = varContentTmpObj.value; break;
             default: break;
+          }
+          if (propty=="Forecolor") {
+            varObj.varContent = varContentTmpObj.style.color
           }
         }
       }
@@ -111,6 +114,10 @@ function ucctojs(str) {
         case "Label" : varObj.varContent = varObj.innerText; break;
         case "TextBox" : varObj.varContent = varObj.value; break;
         default: break;
+      }
+      if (propty=="Forecolor") {
+        varObj.varContent = varObj.style.color;
+        varObj.varType = "toolId_Forecolor";
       }
     }
     //防止空元素无法执行
@@ -164,6 +171,7 @@ function throwerror(str,No) {
 //-----------------------------------------------------= ini函数 =-----------------------------------------
 function init(Str) {
   var MainFx = {varType:"MainFx",varContent:""};
+  var mainFx = {varType:"MainFx",varContent:""};
   var exe =new Array();
 
   //var FxObj = JSON.parse(Str);
@@ -172,7 +180,7 @@ function init(Str) {
   var i=0;
   var iMax = FxObjNameList.length;
 
-  if (typeof FxObj.Main!=="undefined") {
+  if (typeof FxObj.Main!=="undefined" || typeof FxObj.main!=="undefined") {
     iMax = FxObjNameList.length-1;
   }
 
@@ -201,6 +209,7 @@ function init(Str) {
   }
 
   var k = 0;
+  //Main
   if (typeof FxObj.Main!=="undefined") {
     while (k<FxObj.Main.length) {
       var MainFxName = Object.getOwnPropertyNames(FxObj.Main[k]);
@@ -209,6 +218,16 @@ function init(Str) {
     }
     console.log(MainFx.varContent);
     eval(MainFx.varContent);
+  }
+  //main
+  if (typeof FxObj.main!=="undefined") {
+    while (k<FxObj.main.length) {
+      var mainFxName = Object.getOwnPropertyNames(FxObj.main[k]);
+      mainFx.varContent += mainFxName+'(\''+FxObj.main[k][mainFxName]+'\');';
+      k++;
+    }
+    console.log(mainFx.varContent);
+    eval(mainFx.varContent);
   }
 }
 
@@ -222,6 +241,12 @@ function push(obj){
       case "Label" : obj.innerText = obj.varContent; break;
       case "TextBox" : obj.value = obj.varContent; break;
       default: break;
+    }
+  }
+  if (obj.varType==="toolId_Forecolor") {
+    obj.style.color = obj.varContent;
+    if (obj.varContent===0) {
+      obj.style.color = "black"
     }
   }
 }

@@ -161,3 +161,8 @@
 	- MsgBox 通过alert实现
 	- init修改名称
 	- RunAction实现
+
+	@@？
+	区分大小写？？
+	Button（id1，di2）？？
+	var。value？？
