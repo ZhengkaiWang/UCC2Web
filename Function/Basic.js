@@ -166,7 +166,8 @@ function init(Str) {
   var MainFx = {varType:"MainFx",varContent:""};
   var exe =new Array();
 
-  var FxObj = JSON.parse(Str);
+  //var FxObj = JSON.parse(Str);
+  var FxObj = Str;
   var FxObjNameList = Object.getOwnPropertyNames(FxObj);
   var i=0;
   var iMax = FxObjNameList.length;
@@ -194,7 +195,7 @@ function init(Str) {
       }
       var FxRealObj = ucctojs(FxObjNameList[i]);
       FxRealObj.varContent = exe[i];
-      //console.log(FxRealObj.varContent);
+      console.log(FxRealObj.varContent,'\n');
     }
     i++
   }
