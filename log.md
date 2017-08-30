@@ -162,8 +162,8 @@
 	- init修改名称
 	- RunAction实现
 
-	@@？
-	区分大小写？？
+	@@？ @@ 外部引用 不经过预处理直接拉过来 /RunAction不一样
+	区分大小写(函数、控件名均不区分)？？
 	Button（id1，di2）？？
-	var。value？？
+	var.value需要添加
 	Forecolor??
