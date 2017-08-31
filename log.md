@@ -167,3 +167,5 @@
 	Button（id1，di2）？？
 	var.value需要添加
 	Forecolor??
+	main? ID Action大小写问题
+	[main] or fun_main

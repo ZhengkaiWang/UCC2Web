@@ -168,7 +168,7 @@ function throwerror(str,No) {
   return obj;
 }
 
-//-----------------------------------------------------= ini函数 =-----------------------------------------
+//-----------------------------------------------------= init函数 =-----------------------------------------
 function init(Str) {
   var MainFx = {varType:"MainFx",varContent:""};
   var mainFx = {varType:"MainFx",varContent:""};
@@ -186,28 +186,36 @@ function init(Str) {
 
   while (i<iMax) {
     if (typeof FxObj[FxObjNameList[i]]!=="object") {
+      //初始化全局变量
       console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
       eval(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}")
     } else {
       //初始化为全局变量
-      eval(FxObjNameList[i]+"={varContent:"+"\'\'}")
-      var NowFxObj = FxObj[FxObjNameList[i]];
-      exe[i] = "";
-      var j=0;
-      while (j<NowFxObj.length) {
-        //console.log(NowFxObj);
-        //NowFxObj内部是 [{key1:value1},{key2:value2},...]
-        var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
-        exe[i] +=jFxName+'(\''+NowFxObj[j][jFxName]+'\');';
-        j++;
+      if (FxObjNameList[i].indexOf('[')===-1) {
+        //console.log(FxObjNameList[i]+"={varContent:"+"\'\'}");
+        eval(FxObjNameList[i]+"={varContent:"+"\'\'}")
+        var NowFxObj = FxObj[FxObjNameList[i]];
+        exe[i] = "";
+        var j=0;
+        while (j<NowFxObj.length) {
+          //console.log(NowFxObj);
+          //NowFxObj内部是 [{key1:value1},{key2:value2},...]
+          var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
+          exe[i] +=jFxName+'(\''+NowFxObj[j][jFxName]+'\');';
+          j++;
+        }
+        var FxRealObj = ucctojs(FxObjNameList[i]);
+        FxRealObj.varContent = exe[i];
+        console.log(FxObjNameList[i],FxRealObj.varContent,'\n');
       }
-      var FxRealObj = ucctojs(FxObjNameList[i]);
-      FxRealObj.varContent = exe[i];
-      console.log(FxRealObj.varContent,'\n');
     }
     i++
   }
 
+//fun_main
+  if (typeof FxObj.fun_main!=="undefined") {
+    eval(fun_main.varContent);
+  }
   var k = 0;
   //Main
   if (typeof FxObj.Main!=="undefined") {
@@ -247,6 +255,9 @@ function push(obj){
     obj.style.color = obj.varContent;
     if (obj.varContent===0) {
       obj.style.color = "black"
+    }
+    if (obj.varContent===16777215) {
+      obj.style.color = "white"
     }
   }
 }
