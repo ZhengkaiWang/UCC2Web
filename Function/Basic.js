@@ -177,39 +177,40 @@ function init(Str) {
   //var FxObj = JSON.parse(Str);
   var FxObj = Str;
   var FxObjNameList = Object.getOwnPropertyNames(FxObj);
-  var i=0;
+  var i我就不信谁能跟我重名=0;
   var iMax = FxObjNameList.length;
 
   if (typeof FxObj.Main!=="undefined" || typeof FxObj.main!=="undefined") {
     iMax = FxObjNameList.length-1;
   }
 
-  while (i<iMax) {
-    if (typeof FxObj[FxObjNameList[i]]!=="object") {
+  while (i我就不信谁能跟我重名<iMax) {
+    if (typeof FxObj[FxObjNameList[i我就不信谁能跟我重名]]!=="object") {
       //初始化全局变量
-      console.log(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}");
-      eval(FxObjNameList[i]+"={varContent:"+"\'"+FxObj[FxObjNameList[i]]+"\'"+"}")
+      console.log(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'"+FxObj[FxObjNameList[i我就不信谁能跟我重名]]+"\'"+"}");
+      eval(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'"+FxObj[FxObjNameList[i我就不信谁能跟我重名]]+"\'"+"}")
     } else {
       //初始化为全局变量
-      if (FxObjNameList[i].indexOf('[')===-1) {
-        //console.log(FxObjNameList[i]+"={varContent:"+"\'\'}");
-        eval(FxObjNameList[i]+"={varContent:"+"\'\'}")
-        var NowFxObj = FxObj[FxObjNameList[i]];
-        exe[i] = "";
+      if (FxObjNameList[i我就不信谁能跟我重名].indexOf('[')===-1) {
+        //console.log(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'\'}");
+        eval(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'\'}")
+        var NowFxObj = FxObj[FxObjNameList[i我就不信谁能跟我重名]];
+        exe[i我就不信谁能跟我重名] = "";
         var j=0;
         while (j<NowFxObj.length) {
           //console.log(NowFxObj);
           //NowFxObj内部是 [{key1:value1},{key2:value2},...]
           var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
-          exe[i] +=jFxName+'(\''+NowFxObj[j][jFxName]+'\');';
+          exe[i我就不信谁能跟我重名] +=jFxName+'(\''+NowFxObj[j][jFxName]+'\');';
           j++;
         }
-        var FxRealObj = ucctojs(FxObjNameList[i]);
-        FxRealObj.varContent = exe[i];
-        console.log(FxObjNameList[i],FxRealObj.varContent,'\n');
+        var FxRealObj = ucctojs(FxObjNameList[i我就不信谁能跟我重名]);
+        FxRealObj.varContent = exe[i我就不信谁能跟我重名];
+        console.log(FxObjNameList[i我就不信谁能跟我重名],FxRealObj.varContent,'\n');
       }
     }
-    i++
+    i我就不信谁能跟我重名++;
+    console.log(i我就不信谁能跟我重名);
   }
 
 //fun_main
@@ -262,7 +263,7 @@ function push(obj){
   }
 }
 
-//-----------------------------------------------------= Get函数 =-----------------------------------------
+//-----------------------------------------------------= DividePoint函数 =-----------------------------------------
 function DividePoint(str,Pct) {
   var Reg = new RegExp(Pct,'g');
   var Pos =-1;

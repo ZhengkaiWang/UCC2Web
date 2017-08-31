@@ -1,7 +1,6 @@
 //-----------------------------------------------------= Case =-----------------------------------------
-
 function Case(Str) {
-
+  console.log(Str);
 
   if (DividePoint(Str,'>')!==-1) {var Logic = ">";}
   else if (DividePoint(Str,'>=')!==-1) {var Logic = ">=";}

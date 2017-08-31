@@ -164,7 +164,7 @@
 
 	@@？ @@ 外部引用 不经过预处理直接拉过来 /RunAction不一样
 	区分大小写(函数、控件名均不区分)？？
-	Button（id1，di2）？？
+	Button（id1，di2）.value？？(set:id1.v1,id2.v1无效 set:type(id1,id2).v1有效)
 	var.value需要添加
 	Forecolor??
 	main? ID Action大小写问题

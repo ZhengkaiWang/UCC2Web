@@ -1,12 +1,22 @@
 //-----------------------------------------------------= Set函数 =-----------------------------------------
 function Set(Str){
+  console.log(Str);
   return (function (){
     //Return端对象处理
     var RtnStr = Str.slice(0,DividePoint(Str,'='));
     var RtnObj;
     //Right端对象处理
     var RightObj = ucctojs(Str.slice(DividePoint(Str,'=')+1,Str.length));
-
+    //支持Button(id1,id2).propty
+    if (RtnStr.indexOf('(')!==-1) {
+      if (DividePoint(RtnStr,'.')!==-1) {
+        var Propty = RtnStr.slice(RtnStr.indexOf('.')+1,RtnStr.length);
+        RtnStr = RtnStr.replace(/,/g,'.'+Propty+',');
+        RtnStr = RtnStr.slice(RtnStr.indexOf('(')+1,RtnStr.indexOf(')'))+'.'+Propty;
+      } else {
+        RtnStr = RtnStr.slice(RtnStr.indexOf('(')+1,RtnStr.indexOf(')'));
+      }
+    }
     RtnStr += ',';
     while (DividePoint(RtnStr,',')!==-1) {
       RtnObj = ucctojs(RtnStr.slice(0,DividePoint(RtnStr,',')));
@@ -15,8 +25,6 @@ function Set(Str){
       RtnStr = RtnStr.slice(DividePoint(RtnStr,',')+1,RtnStr.length);
     }
   })()
-
-
 }
 
 //-----------------------------------------------------= Clear =-----------------------------------------
