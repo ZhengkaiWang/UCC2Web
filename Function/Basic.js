@@ -20,6 +20,7 @@
 //均按一个单引号处理
 
 function ucctojs(str) {
+  console.log(str);
 
   var varObj = new Object();
   var varType;
@@ -152,13 +153,13 @@ function throwerror(str,No) {
 
   switch (No) {
     case 1:{
-      console.log('warn:'+str+' 组件不存在 做字符串处理');
+      console.log('!warn!:'+str+' 组件不存在 做字符串处理');
       obj.varType = "string";
       obj.varContent = "@"+str;
       break;
     }
     case 2:{
-      console.log('warn:'+str+' 变量不存在 做字符串处理');
+      console.log('!warn!:'+str+' 变量不存在 做字符串处理');
       obj.varType = "string";
       obj.varContent = str;
       break;

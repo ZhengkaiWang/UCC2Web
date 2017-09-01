@@ -1,6 +1,5 @@
 //-----------------------------------------------------= Set函数 =-----------------------------------------
 function Set(Str){
-  console.log(Str);
   return (function (){
     //Return端对象处理
     var RtnStr = Str.slice(0,DividePoint(Str,'='));

@@ -12,10 +12,9 @@ function Case(Str) {
   else if (DividePoint(Str,'LIKE REG')!==-1) {var Logic = "LIKE REG";var RealLogic = "??"}//?
   else {console.error("无效Logic");  }
 
-  console.log(Str.slice(0,DividePoint(Str,Logic)));
   var BoolLeftObj = ucctojs(Str.slice(0,DividePoint(Str,Logic)));
   var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
-
+console.log(BoolRightObj);
   if (DividePoint(Str,"Else")!==-1) {
     var TrueAction = Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else"));
     var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
@@ -35,7 +34,9 @@ function Case(Str) {
   TrueActionPrm = TrueActionPrm.replace(/'/g,"\\'");
   FalseActionPrm = FalseActionPrm.replace(/"/g,'\\"');
 
+console.log(BoolLeftObj.varContent+RealLogic+BoolRightObj.varContent);
   if (eval("BoolLeftObj.varContent"+RealLogic+"BoolRightObj.varContent")) {
+    console.log(TrueActionFx+'("'+TrueActionPrm+'")');
     eval(TrueActionFx+'("'+TrueActionPrm+'")')
   } else {
     eval(FalseActionFx+'("'+FalseActionPrm+'")')
@@ -89,6 +90,10 @@ function IF(Str) {
     push(RtnObj);
   } else {return Rst;}
 
+}
+
+function For(Str) {
+  console.log("? For",Str);
 }
 
 function RunAction(Str) {

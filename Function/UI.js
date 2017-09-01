@@ -199,9 +199,12 @@ function HideScreen(Str) {
 }
 //-----------------------------------------------------= SetOnTop =-----------------------------------------
 function SetOnTop(Str) {
-  console.log(Str);
+  console.log("? SetOnTop",Str);
 }
 //-----------------------------------------------------= Transparent =-----------------------------------------
 function Transparent(Str) {
-  console.log(Str);
+  console.log("? Transparent",Str);
+}
+function Move(Str) {
+  console.log("? Move",Str);
 }

@@ -176,4 +176,6 @@
 	- GetRecord
 	- ShwoHideButton 修改
 	- SetOnTop？？
+	- Move??
+	- For??
 	- 大小写混淆？？
