@@ -186,7 +186,7 @@ function BindingDataTo(str) {
 function Calc(Str) {
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
   var RightStr = Str.slice(DividePoint(Str,'=')+1,Str.length);
-  var ExeRightStr = RightStr.replace(/[@\w\u4e00-\u9fa5]+/g,function (word) {
+  var ExeRightStr = RightStr.replace(/[@\w\u4e00-\u9fa5.]+/g,function (word) {
     return "ucctojs('"+word+"').varContent";
   })
   console.log(ExeRightStr);

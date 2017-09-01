@@ -181,7 +181,7 @@ function Translucence(Str){
     //rgba(0,0,0,0.5)
     //RtnObj.style.filter='alpha(opacity='+temp/2.25+')';
 }
-
+//-----------------------------------------------------= ShowScreen =-----------------------------------------
 function ShowScreen(Str) {
   Str += ',';
   while (DividePoint(Str,',')!==-1) {
@@ -189,11 +189,19 @@ function ShowScreen(Str) {
     Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   }
 }
-
+//-----------------------------------------------------= HideScreen =-----------------------------------------
 function HideScreen(Str) {
   Str += ',';
   while (DividePoint(Str,',')!==-1) {
     ucctojs(Str.slice(0,DividePoint(Str,','))).style.display="none";
     Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   }
+}
+//-----------------------------------------------------= SetOnTop =-----------------------------------------
+function SetOnTop(Str) {
+  console.log(Str);
+}
+//-----------------------------------------------------= Transparent =-----------------------------------------
+function Transparent(Str) {
+  console.log(Str);
 }
