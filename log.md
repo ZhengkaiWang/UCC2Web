@@ -169,3 +169,6 @@
 	Forecolor??
 	main? ID Action大小写问题
 	[main] or fun_main
+
+## 9/1
+	- 成功读取数据

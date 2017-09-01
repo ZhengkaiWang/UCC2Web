@@ -5,7 +5,7 @@ function Case(Str) {
   if (DividePoint(Str,'>')!==-1) {var Logic = ">";}
   else if (DividePoint(Str,'>=')!==-1) {var Logic = ">=";}
   else if (DividePoint(Str,'==')!==-1) {var Logic = "==";}
-  else if (DividePoint(Str,'<>')!==-1) {var Logic = "<>";}
+  else if (DividePoint(Str,'<>')!==-1) {var Logic = "！=";}
   else if (DividePoint(Str,'<=')!==-1) {var Logic = "<=";}
   else if (DividePoint(Str,'<')!==-1) {var Logic = "<";}
   else if (DividePoint(Str,'LIKE REG')!==-1) {var Logic = "LIKE REG";}//?
