@@ -186,9 +186,10 @@ function BindingDataTo(str) {
 function Calc(Str) {
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
   var RightStr = Str.slice(DividePoint(Str,'=')+1,Str.length);
-  var ExeRightStr = RightStr.replace(/\w+[0-9]\w*/g,function (word) {
+  var ExeRightStr = RightStr.replace(/[@\w\u4e00-\u9fa5]+/g,function (word) {
     return "ucctojs('"+word+"').varContent";
   })
+  console.log(ExeRightStr);
   RtnObj.varContent = eval(ExeRightStr);
   push(RtnObj)
 }
@@ -393,4 +394,10 @@ function GetRandomNumber(Str){
 
 function MsgBox(Str) {
   alert(Str);
+}
+
+function GetRecordCount(Str) {
+  var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
+  RtnObj.varContent = ucctojs(Str.slice(DividePoint(Str,'=')+1,Str.length)).varContent.length;
+  push(RtnObj);
 }

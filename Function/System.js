@@ -66,6 +66,12 @@ function Exit() {
   var Body = Form.parentNode;
   Body.remove(Form);
 }
+
+function GetIP(Str) {
+  var Obj = ucctojs(Str);
+  Obj.varContent = '127.0.0.1';
+  push(Obj);
+}
 //-----------------------------------------------------= GetDateTime =-----------------------------------------
 function GetDateTime(Str) {
   var DateObj = new Date();

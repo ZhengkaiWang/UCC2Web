@@ -172,3 +172,8 @@
 
 ## 9/1
 	- 成功读取数据
+	- GetIP 127.0.0.1
+	- GetRecord
+	- ShwoHideButton 修改
+	- SetOnTop？？
+	- 大小写混淆？？

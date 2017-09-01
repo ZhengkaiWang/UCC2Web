@@ -24,10 +24,12 @@ function HideButton(Str){
     var BtnObj,TtlObj;
     while (DividePoint(Str,',')!==-1) {
       BtnObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      TtlObj = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
       if(BtnObj.getAttribute("ucctype")=="Image"||BtnObj.getAttribute("ucctype")=="Gif"||BtnObj.getAttribute("ucctype")=="Apng"||BtnObj.getAttribute("ucctype")=="Label"){
-         BtnObj.style.display="none";
-         TtlObj.style.display="none";
+        BtnObj.style.display="none";
+        if (window.document.getElementById(Str.slice(0,DividePoint(Str,','))+"span")!==null) {
+          TtlObj = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
+          TtlObj.style.display="none";
+        }
       }
       else{
           console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是button类型，此函数对其无作用');
@@ -41,10 +43,12 @@ function ShowButton(Str){
     var BtnObj,TtlObj;
     while (DividePoint(Str,',')!==-1) {
       BtnObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-      TtlObj = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
       if(BtnObj.getAttribute("ucctype")=="Image"||BtnObj.getAttribute("ucctype")=="Gif"||BtnObj.getAttribute("ucctype")=="Apng"||BtnObj.getAttribute("ucctype")=="Label"){
          BtnObj.style.display="block";
-         TtlObj.style.display="block";
+         if (window.document.getElementById(Str.slice(0,DividePoint(Str,','))+"span")!==null) {
+           TtlObj = ucctojs(Str.slice(0,DividePoint(Str,','))+"span");
+           TtlObj.style.display="block";
+         }
       }
       else{
           console.log('error:'+ Str.slice(0,DividePoint(Str,','))+'操作对象不是button类型，此函数对其无作用');
