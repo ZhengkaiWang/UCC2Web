@@ -1,6 +1,6 @@
 //-----------------------------------------------------= Case =-----------------------------------------
 function Case(Str) {
-  console.log(Str);
+  //console.log(Str);
 
   // 逻辑符判断？？
   if (DividePoint(Str,'<=')!==-1) {var Logic = "<=";var RealLogic = "<=";}
@@ -14,7 +14,7 @@ function Case(Str) {
 
   var BoolLeftObj = ucctojs(Str.slice(0,DividePoint(Str,Logic)));
   var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
-console.log(BoolRightObj);
+  //console.log(BoolRightObj);
   if (DividePoint(Str,"Else")!==-1) {
     var TrueAction = Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else"));
     var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
@@ -34,9 +34,9 @@ console.log(BoolRightObj);
   TrueActionPrm = TrueActionPrm.replace(/'/g,"\\'");
   FalseActionPrm = FalseActionPrm.replace(/"/g,'\\"');
 
-console.log(BoolLeftObj.varContent+RealLogic+BoolRightObj.varContent);
+  //console.log(BoolLeftObj.varContent+RealLogic+BoolRightObj.varContent);
   if (eval("BoolLeftObj.varContent"+RealLogic+"BoolRightObj.varContent")) {
-    console.log(TrueActionFx+'("'+TrueActionPrm+'")');
+    //console.log(TrueActionFx+'("'+TrueActionPrm+'")');
     eval(TrueActionFx+'("'+TrueActionPrm+'")')
   } else {
     eval(FalseActionFx+'("'+FalseActionPrm+'")')
@@ -97,8 +97,12 @@ function For(Str) {
 }
 
 function RunAction(Str) {
-  //console.log(ucctojs(Str).varContent);
-  eval(ucctojs(Str).varContent)
+  var i=0;
+  var Obj = ucctojs(Str);
+  while (i<Obj.varContent.FxListKey.length) {
+    eval(Obj.varContent.FxListKey[i]+"(Obj.varContent.PrmListKey[i])");
+    i++;
+  }
 }
 
 function ExitAction() {

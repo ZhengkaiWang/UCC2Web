@@ -20,7 +20,7 @@
 //均按一个单引号处理
 
 function ucctojs(str) {
-  console.log(str);
+  //console.log(str);
 
   var varObj = new Object();
   var varType;
@@ -173,50 +173,57 @@ function throwerror(str,No) {
 function init(Str) {
   var MainFx = {varType:"MainFx",varContent:""};
   var mainFx = {varType:"MainFx",varContent:""};
-  var exe =new Array();
 
-  //var FxObj = JSON.parse(Str);
   var FxObj = Str;
   var FxObjNameList = Object.getOwnPropertyNames(FxObj);
-  var i我就不信谁能跟我重名=0;
-  var iMax = FxObjNameList.length;
+  var iInJs=0;
+  var iMaxInJs = FxObjNameList.length;
 
   if (typeof FxObj.Main!=="undefined" || typeof FxObj.main!=="undefined") {
-    iMax = FxObjNameList.length-1;
+    iMaxInJs = FxObjNameList.length-1;
   }
 
-  while (i我就不信谁能跟我重名<iMax) {
-    if (typeof FxObj[FxObjNameList[i我就不信谁能跟我重名]]!=="object") {
+  while (iInJs<iMaxInJs) {
+    if (typeof FxObj[FxObjNameList[iInJs]]!=="object") {
       //初始化全局变量
-      console.log(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'"+FxObj[FxObjNameList[i我就不信谁能跟我重名]]+"\'"+"}");
-      eval(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'"+FxObj[FxObjNameList[i我就不信谁能跟我重名]]+"\'"+"}")
+      eval(FxObjNameList[iInJs]+"={varContent:FxObj[FxObjNameList[iInJs]]}")
     } else {
       //初始化为全局变量
-      if (FxObjNameList[i我就不信谁能跟我重名].indexOf('[')===-1) {
-        //console.log(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'\'}");
-        eval(FxObjNameList[i我就不信谁能跟我重名]+"={varContent:"+"\'\'}")
-        var NowFxObj = FxObj[FxObjNameList[i我就不信谁能跟我重名]];
-        exe[i我就不信谁能跟我重名] = "";
+      if (FxObjNameList[iInJs].indexOf('[')===-1) {
+        //console.log(FxObjNameList[iInJs]+"={varContent:"+"\'\'}");
+         FxList = new Array();
+         PrmList = new Array();
+        eval(FxObjNameList[iInJs]+"={varContent:''}")
+        var NowFxObj = FxObj[FxObjNameList[iInJs]];
         var j=0;
         while (j<NowFxObj.length) {
+          //eval(NowFxObj)
           //console.log(NowFxObj);
           //NowFxObj内部是 [{key1:value1},{key2:value2},...]
-          var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
-          exe[i我就不信谁能跟我重名] +=jFxName+'(\''+NowFxObj[j][jFxName]+'\');';
+          //var jFxName = Object.getOwnPropertyNames(NowFxObj[j]);
+          FxList[j] = Object.getOwnPropertyNames(NowFxObj[j])[0];
+          PrmList[j] = NowFxObj[j][FxList[j]];
           j++;
         }
-        var FxRealObj = ucctojs(FxObjNameList[i我就不信谁能跟我重名]);
-        FxRealObj.varContent = exe[i我就不信谁能跟我重名];
-        console.log(FxObjNameList[i我就不信谁能跟我重名],FxRealObj.varContent,'\n');
+        var FxRealObj = ucctojs(FxObjNameList[iInJs]);
+        FxRealObj.varContent={FxListKey:FxList,PrmListKey:PrmList};
+        //console.log(FxObjNameList[iInJs],FxRealObj.varContent,'\n');
       }
     }
-    i我就不信谁能跟我重名++;
-    console.log(i我就不信谁能跟我重名);
+    iInJs++;
+    //console.log(iInJs);
   }
 
 //fun_main
   if (typeof FxObj.fun_main!=="undefined") {
-    eval(fun_main.varContent);
+    var i=0;
+    while (i<fun_main.varContent.FxListKey.length) {
+      //console.log(fun_main.varContent.FxListKey[i],fun_main.varContent.PrmListKey[i]);
+      eval(fun_main.varContent.FxListKey[i]+"(fun_main.varContent.PrmListKey[i])")
+      i++;
+
+    }
+    //eval(fun_main.varContent);
   }
   var k = 0;
   //Main
