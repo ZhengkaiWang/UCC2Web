@@ -189,7 +189,6 @@ function Calc(Str) {
   var ExeRightStr = RightStr.replace(/[@\w\u4e00-\u9fa5.]+/g,function (word) {
     return "ucctojs('"+word+"').varContent";
   })
-  console.log(ExeRightStr);
   RtnObj.varContent = eval(ExeRightStr);
   push(RtnObj)
 }
