@@ -20,7 +20,7 @@
 //均按一个单引号处理
 
 function ucctojs(str) {
-  //console.log(str);
+  str = str.trim();
 
   var varObj = new Object();
   var varType;
@@ -133,12 +133,17 @@ function ucctojs(str) {
         varObj.varContent = ucctojs(str.slice(1,str.length)).varContent;
         varObj.varType = "@Var";
       } else if(eval("typeof "+str+"==='object'")){
-
         varObj = eval(str);
         varObj.varType = "gblVar";
       } else if (!isNaN(str.slice(0,str.length))) {
         varObj.varContent = parseFloat(str.slice(0,str.length));
         varObj.varType = "number";
+      } else if (str=="True") {
+        varObj.varContent = true;
+        varObj.varType = "bool";
+      } else if (str=="False") {
+        varObj.varContent = false;
+        varObj.varType = "bool";
       } else {
         return throwerror(str,2);
       }

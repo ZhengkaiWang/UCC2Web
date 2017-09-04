@@ -166,7 +166,7 @@
 	- 区分大小写(函数、控件名均不区分)？？
 	- Button（id1，di2）.value？？(set:id1.v1,id2.v1无效 set:type(id1,id2).v1有效)
 	- var.value需要添加
-	- Forecolor??
+	- Forecolor?? 只翻译了黑白色
 	- main? ID Action大小写问题
 	- [main] or fun_main
 
@@ -182,4 +182,5 @@
 	- SetOnTop完成
 
 ## 9/3
- - 解决引号问题 重写Runaction	
+ - 解决引号问题 重写Runaction
+ - html 中 Button(L新店开业Eng,L主题活动Eng,,L信息查询Eng,L服务设施Eng).Forecolor =0 去掉一个,
