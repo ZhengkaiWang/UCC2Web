@@ -32,3 +32,5 @@
 - issue
   - Standard  DB:db数据集=Access,'@txtAccessFile','',SQL @txtSQL.text ; sql语句中加入变量从前缀改为参数
   - menu重绘
+
+- GetFileNameFromURI 重写？？

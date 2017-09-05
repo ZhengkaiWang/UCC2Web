@@ -204,7 +204,7 @@ function GetFieldValue(Str) {
   var OutputObj = JSON.parse(JSON.stringify(DataObj));
 
 
-  if (Lmt.varType==="number") {
+  if (typeof Lmt.varContent === "number") {
     if (Lmt.varContent<=DataObj.varContent.length) {
       OutputObj.varContent[0] = OutputObj.varContent[Lmt.varContent];
       OutputObj.varContent.length = 1;

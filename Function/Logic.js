@@ -94,10 +94,10 @@ function IF(Str) {
 
 function For(Str) {
   if (typeof Str.slice(0,DividePoint(Str,','))!=="number") {
-    var iInJsFor = ucctojs(Str.slice(0,DividePoint(Str,','))).varContent;
+    var iInJsFor = ucctojs(Str.slice(0,DividePoint(Str,',')));
     Str = Str.slice(DividePoint(Str,',')+1,Str.length);
   } else {
-    var iInJsFor = 0;
+    var iInJsFor={varContent:0};
   }
   var StartPos =  ucctojs(Str.slice(0,DividePoint(Str,','))).varContent;
   Str = Str.slice(DividePoint(Str,',')+1,Str.length);
@@ -108,18 +108,24 @@ function For(Str) {
     var EndPos =  ucctojs(Str.slice(0,DividePoint(Str,'='))).varContent;
     var Step = 1;
   }
-  console.log(iInJsFor,StartPos,EndPos,Step);
+  console.log(iInJsFor.varContent,StartPos,EndPos,Step);
 
-
-  console.log("? For",Str);
+  for (iInJsFor.varContent = StartPos; iInJsFor.varContent<EndPos+1; iInJsFor.varContent+=Step) {
+    RunAction(Str.slice(DividePoint(Str,'=')+1,Str.length));
+    console.log(Str.slice(DividePoint(Str,'=')+1,Str.length));
+  }
+  iInJsFor.varContent--;
+  push(iInJsFor);
 }
 
 function RunAction(Str) {
-  var i=0;
-  var Obj = ucctojs(Str);
-  while (i<Obj.varContent.FxListKey.length) {
-    eval(Obj.varContent.FxListKey[i]+"(Obj.varContent.PrmListKey[i])");
-    i++;
+  if (Str.indexOf(':')!==-1) {
+    eval(Str.slice(0,DividePoint(Str,':'))+"(Str.slice(DividePoint(Str,':')+1,Str.length))");
+  } else {
+    var Obj = ucctojs(Str);
+    for (var i = 0; i < Obj.varContent.FxListKey.length; i++) {
+      eval(Obj.varContent.FxListKey[i]+"(Obj.varContent.PrmListKey[i])");
+    }
   }
 }
 

@@ -190,3 +190,4 @@
 ## 9/4
 	- 常量的处理 ConstantV
 	- @var @ID 的简化
+	- GetFieldValue 优化？？？？？？？？？？？？？？
