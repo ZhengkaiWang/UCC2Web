@@ -197,23 +197,20 @@ function GetFieldValue(Str) {
   var RtnObj = ucctojs(Str.slice(0,DividePoint(Str,'=')));
   var DataObj = ucctojs(Str.slice(DividePoint(Str,'=')+1,DividePoint(Str,',')));
   Str = Str.slice(DividePoint(Str,',')+1,Str.length);
-  var Lmt = ucctojs(Str.slice(0,DividePoint(Str,',')));
+  var LmtStr = Str.slice(0,DividePoint(Str,','));
   var FieldName = ucctojs(Str.slice(DividePoint(Str,',')+1,Str.length));
-  //console.log(RtnObj,"\n",DataObj,"\n",Lmt,"\n",FieldName);
   var i = 0;
   var OutputObj = JSON.parse(JSON.stringify(DataObj));
 
-
-  if (typeof Lmt.varContent === "number") {
-    if (Lmt.varContent<=DataObj.varContent.length) {
-      OutputObj.varContent[0] = OutputObj.varContent[Lmt.varContent];
+  if (!isNaN(LmtStr) && LmtStr!=="") {
+    if (LmtStr<=DataObj.varContent.length) {
+      OutputObj.varContent[0] = OutputObj.varContent[LmtStr];
       OutputObj.varContent.length = 1;
     }
-  } else if (DividePoint(Lmt.varContent,"=")!==-1) {
-    var LmtFieldObj = ucctojs(Lmt.varContent.slice(0,DividePoint(Lmt.varContent,'=')));
-    var LmtValueObj = ucctojs(Lmt.varContent.slice(DividePoint(Lmt.varContent,'=')+1,Lmt.varContent.length));
+  } else if (DividePoint(LmtStr,"=")!==-1) {
+    var LmtFieldObj = ucctojs(LmtStr.slice(0,DividePoint(LmtStr,'=')));
+    var LmtValueObj = ucctojs(LmtStr.slice(DividePoint(LmtStr,'=')+1,LmtStr.length));
     while (i<DataObj.varContent.length) {
-      console.log();
       if (DataObj.varContent[i][LmtFieldObj.varContent]===LmtValueObj.varContent) {
         OutputObj.varContent[0] = OutputObj.varContent[i];
         OutputObj.varContent.length = 1;

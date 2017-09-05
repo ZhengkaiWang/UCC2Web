@@ -48,14 +48,18 @@ function ucctojs(Str) {
       var varContentTmp = Str.slice(Str.search(/@/) + 1,Str.lastIndexOf(quote));
       //取得到组件
       if (window.document.getElementById(varContentTmp)!==null){
-        varObj.varContent = ucctojs(varContentTmp).varContent;
+        if (propty!==null) {
+          varObj.varContent = ucctojs(varContentTmp+'.'+propty).varContent;
+        } else {
+          varObj.varContent = ucctojs(varContentTmp).varContent;
+        }
       }
 
       //取不到组件
       //探测变量是否存在
       else if (eval("typeof "+varContentTmp+"!=='undefined'")) {
         varObj.varType = "@gblvar";
-        varObj.varContent = ucctojs(varContentTmp+'.'+propty).varContent;
+        varObj.varContent = ucctojs(varContentTmp).varContent;
         }
         else {
           return throwerror(varContentTmp,1);
@@ -291,7 +295,7 @@ function ConstantV(Str) {
   }
   var RtnConstant = new Object();
   if (!isNaN(Str) && Str!=="") {
-    RtnConstant.varContent = parseFloat(Str.slice(0,Str.length));
+    RtnConstant.varContent = parseFloat(Str);
     RtnConstant.varType = "number";
   } else if (Str=="True") {
     RtnConstant.varContent = true;

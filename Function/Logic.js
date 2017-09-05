@@ -1,6 +1,5 @@
 //-----------------------------------------------------= Case =-----------------------------------------
 function Case(Str) {
-  //console.log(Str);
 
   // 逻辑符判断？？
   if (DividePoint(Str,'<=')!==-1) {var Logic = "<=";var RealLogic = "<=";}
@@ -14,7 +13,6 @@ function Case(Str) {
 
   var BoolLeftObj = ucctojs(Str.slice(0,DividePoint(Str,Logic)));
   var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
-  //console.log(BoolRightObj);
   if (DividePoint(Str,"Else")!==-1) {
     var TrueAction = Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else"));
     var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
