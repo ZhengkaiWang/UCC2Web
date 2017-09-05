@@ -186,3 +186,6 @@
  - html 中 Button(L新店开业Eng,L主题活动Eng,,L信息查询Eng,L服务设施Eng).Forecolor =0 去掉一个,
  - [main] fun_main
  - btn Btn统一
+
+## 9/4
+	- 常量的处理 ConstantV

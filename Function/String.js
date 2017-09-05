@@ -248,7 +248,7 @@ function FillString(Str){
 	  }else{
 		  RtnObj.varContent = sonObjArray[0].varContent;
 	  }
-      
+
   }else if(sonObjArray.length==3) {
 	  var length2 = sonObjArray[1].varContent-sonObjArray[0].varContent.length;
 	  RtnObj.varContent = sonObjArray[0].varContent;
@@ -261,14 +261,14 @@ function FillString(Str){
 	      RtnObj.varContent = sonObjArray[0].varContent;
 		  for(var i = 0;i<length2;i++){
 			  RtnObj.varContent = sonObjArray[2].varContent+RtnObj.varContent;
-		  } 
+		  }
 	 }
 	  else{
 		  var length2 = sonObjArray[1].varContent-sonObjArray[0].varContent.length;
 		  RtnObj.varContent = sonObjArray[0].varContent;
 		  for(var i = 0;i<length2;i++){
 			  RtnObj.varContent = RtnObj.varContent+sonObjArray[2].varContent;
-		  }  
+		  }
 	  }
 
   }

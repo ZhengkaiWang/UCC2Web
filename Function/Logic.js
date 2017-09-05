@@ -93,6 +93,24 @@ function IF(Str) {
 }
 
 function For(Str) {
+  if (typeof Str.slice(0,DividePoint(Str,','))!=="number") {
+    var iInJsFor = ucctojs(Str.slice(0,DividePoint(Str,','))).varContent;
+    Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  } else {
+    var iInJsFor = 0;
+  }
+  var StartPos =  ucctojs(Str.slice(0,DividePoint(Str,','))).varContent;
+  Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  if (DividePoint(Str,',')!==-1) {
+    var EndPos = ucctojs(Str.slice(0,DividePoint(Str,','))).varContent;
+    var Step =  ucctojs(Str.slice(DividePoint(Str,',')+1,DividePoint(Str,'='))).varContent;
+  } else {
+    var EndPos =  ucctojs(Str.slice(0,DividePoint(Str,'='))).varContent;
+    var Step = 1;
+  }
+  console.log(iInJsFor,StartPos,EndPos,Step);
+
+
   console.log("? For",Str);
 }
 

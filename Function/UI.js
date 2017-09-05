@@ -39,7 +39,6 @@ function HideButton(Str){
 }
 //-----------------------------------------------------= ShowButton函数 =-----------------------------------------
 function ShowButton(Str){
-  console.log(Str);
     Str +=',';
     var BtnObj,TtlObj;
     while (DividePoint(Str,',')!==-1) {
@@ -200,7 +199,7 @@ function HideScreen(Str) {
 }
 //-----------------------------------------------------= SetOnTop =-----------------------------------------
 function SetOnTop(Str) {
-  console.log("? SetOnTop?",Str);
+  //console.log("? SetOnTop?",Str);
     Str += ',';
     var i =1000;
     while (DividePoint(Str,',')!==-1) {

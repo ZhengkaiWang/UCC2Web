@@ -3,7 +3,7 @@
 // var变量
 // varType ucc元变量在js对应变量类型
 // varContent ucc元变量在js对应变量
-// .*Tmp *Start *End *str即字面意
+// .*Tmp *Start *End *Str即字面意
 // .*Obj js操作对象
 
 //先检索单引号，有单引号者
@@ -19,23 +19,23 @@
 //传参方式 Object
 //均按一个单引号处理
 
-function ucctojs(str) {
-  str = str.trim();
+function ucctojs(Str) {
+  Str = Str.trim();
 
   var varObj = new Object();
   var varType;
-  var point = str.length;
+  var point = Str.length;
   var propty = null;
 
   //判断是否有 ".属性值"
-  if(str.indexOf('.')!==-1){
-    point = str.indexOf('.');
-    propty = str.slice(point+1,str.length);
+  if(Str.indexOf('.')!==-1){
+    point = Str.indexOf('.');
+    propty = Str.slice(point+1,Str.length);
   }
 
   //若有引号
-  if(str.search(/'.*'/)!==-1 || str.search(/".*"/)!==-1){
-    if (str.search(/'.*'/)!==-1) {
+  if(Str.search(/'.*'/)!==-1 || Str.search(/".*"/)!==-1){
+    if (Str.search(/'.*'/)!==-1) {
       var quote = "'"
     } else {
       var quote = '"'
@@ -43,42 +43,19 @@ function ucctojs(str) {
 
     //若有@
     //"@组件id @gblvar"形式
-    if(str.search(/@/)!==-1){
-      varObj.varType = "@str";
-      var varContentTmpStart = str.search(/@/) + 1;
-      var varContentTmpEnd = str.lastIndexOf(quote);
-      var varContentTmp = str.slice(varContentTmpStart,varContentTmpEnd);
-      var varContentTmpObj = window.document.getElementById(varContentTmp);
+    if(Str.search(/@/)!==-1){
+      varObj.varType = "@Str";
+      var varContentTmp = Str.slice(Str.search(/@/) + 1,Str.lastIndexOf(quote));
       //取得到组件
-      if (varContentTmpObj!==null)
-      {
-        if (propty===null) {
-          switch (varContentTmpObj.getAttribute("ucctype")) {
-            case "ComboBox" : varObj.varContent = varContentTmpObj.options[varContentTmpObj.selectedIndex].text; break;
-            case "Label" : varObj.varContent = varContentTmpObj.innerText; break;
-            case "TextBox" : varObj.varContent = varContentTmpObj.value; break;
-            default: break;
-          }
-        } else {
-          //此处补全
-          //console.log(str+" default propty");
-          switch (varContentTmpObj.getAttribute("ucctype")) {
-            case "ComboBox" : varObj.varContent = varContentTmpObj.options[varContentTmpObj.selectedIndex].text; break;
-            case "Label" : varObj.varContent = varContentTmpObj.innerText; break;
-            case "TextBox" : varObj.varContent = varContentTmpObj.value; break;
-            default: break;
-          }
-          if (propty=="Forecolor") {
-            varObj.varContent = varContentTmpObj.style.color
-          }
-        }
+      if (window.document.getElementById(varContentTmp)!==null){
+        varObj.varContent = ucctojs(varContentTmp).varContent;
       }
 
       //取不到组件
       //探测变量是否存在
       else if (eval("typeof "+varContentTmp+"!=='undefined'")) {
         varObj.varType = "@gblvar";
-        varObj.varContent = eval(varContentTmp).varContent;
+        varObj.varContent = ucctojs(varContentTmp+'.'+propty).varContent;
         }
         else {
           return throwerror(varContentTmp,1);
@@ -87,18 +64,22 @@ function ucctojs(str) {
 
     //字符串形式
     else {
-      varObj.varType = "string";
-      var varContentTmpStart = str.indexOf(quote) + 1;
-      var varContentTmpEnd = str.lastIndexOf(quote);
-      varObj.varContent = str.slice(varContentTmpStart,varContentTmpEnd);
+      varObj.varType = "String";
+      var varContentTmpStart = Str.indexOf(quote) + 1;
+      var varContentTmpEnd = Str.lastIndexOf(quote);
+      varObj.varContent = Str.slice(varContentTmpStart,varContentTmpEnd);
+    }
+    if (typeof ConstantV(varObj.varContent)==="object") {
+      //常量处理
+      varObj = ConstantV(varObj.varContent);
     }
   }
 
     //组件id形式
-    //window.document.getElementById(str)即取址操作
+    //window.document.getElementById(Str)即取址操作
     //?.caption直接忽略默认操作
-  else if(window.document.getElementById(str.slice(0,point))!==null){
-    varObj = window.document.getElementById(str.slice(0,point));
+  else if(window.document.getElementById(Str.slice(0,point))!==null){
+    varObj = window.document.getElementById(Str.slice(0,point));
     varObj.varType = "toolId";
     if (propty===null) {
       switch (varObj.getAttribute("ucctype")) {
@@ -108,7 +89,7 @@ function ucctojs(str) {
         default: break;
       }
     } else {
-      //console.log(str+" default propty");
+      //console.log(Str+" default propty");
       //此处补全
       switch (varObj.getAttribute("ucctype")) {
         case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
@@ -122,51 +103,46 @@ function ucctojs(str) {
       }
     }
     //防止空元素无法执行
-    if (!isNaN(varObj.varContent)){
-      varObj.varContent = parseFloat(varObj.varContent);
+    if (typeof ConstantV(varObj.varContent)==="object") {
+      //常量处理
+      varObj.varContent = ConstantV(varObj.varContent).varContent;
     }
   }
 
     //全局变量形式
     else{
-      if(str.search(/@/)!==-1){
-        varObj.varContent = ucctojs(str.slice(1,str.length)).varContent;
+      if(Str.search(/@/)!==-1){
+        varObj.varContent = ucctojs(Str.slice(1,Str.length)).varContent;
         varObj.varType = "@Var";
-      } else if(eval("typeof "+str+"==='object'")){
-        varObj = eval(str);
+      } else if(eval("typeof "+Str+"==='object'")){
+        varObj = eval(Str);
         varObj.varType = "gblVar";
-      } else if (!isNaN(str.slice(0,str.length))) {
-        varObj.varContent = parseFloat(str.slice(0,str.length));
-        varObj.varType = "number";
-      } else if (str=="True") {
-        varObj.varContent = true;
-        varObj.varType = "bool";
-      } else if (str=="False") {
-        varObj.varContent = false;
-        varObj.varType = "bool";
+      } else if (typeof ConstantV(Str)==="object") {
+        //常量处理
+        varObj = ConstantV(Str);
       } else {
-        return throwerror(str,2);
+        throwerror(Str,2);
       }
     }
-   return varObj;
+  return varObj;
 }
 
 //-----------------------------------------------------= throwerror函数 =-----------------------------------------
-function throwerror(str,No) {
+function throwerror(Str,No) {
 
   var obj = new Object();
 
   switch (No) {
     case 1:{
-      console.log('!warn!:'+str+' 组件不存在 做字符串处理');
-      obj.varType = "string";
-      obj.varContent = "@"+str;
+      console.log('!warn!:'+Str+' @对象不存在 做字符串处理');
+      obj.varType = "String";
+      obj.varContent = "@"+Str;
       break;
     }
     case 2:{
-      console.log('!warn!:'+str+' 变量不存在 做字符串处理');
-      obj.varType = "string";
-      obj.varContent = str;
+      console.log('!warn!:'+Str+' 变量不存在 做字符串处理');
+      obj.varType = "String";
+      obj.varContent = Str;
       break;
     }
       //default:
@@ -184,14 +160,18 @@ function init(Str) {
   var iInJs=0;
   var iMaxInJs = FxObjNameList.length;
 
-  if (typeof FxObj.Main!=="undefined" || typeof FxObj.main!=="undefined") {
-    iMaxInJs = FxObjNameList.length-1;
-  }
+  // if (typeof FxObj.Main!=="undefined" || typeof FxObj.main!=="undefined") {
+  //   iMaxInJs = FxObjNameList.length-1;
+  // }
 
   while (iInJs<iMaxInJs) {
     if (typeof FxObj[FxObjNameList[iInJs]]!=="object") {
       //初始化全局变量
       eval(FxObjNameList[iInJs]+"={varContent:FxObj[FxObjNameList[iInJs]]}")
+      if (typeof ConstantV(FxObj[FxObjNameList[iInJs]])==="object") {
+          //常量处理
+          eval(FxObjNameList[iInJs]+"=ConstantV(FxObj[FxObjNameList[iInJs]])");
+        }
     } else {
       //初始化为全局变量
       if (FxObjNameList[iInJs].indexOf('[')===-1) {
@@ -221,35 +201,15 @@ function init(Str) {
 
 //fun_main
   if (typeof FxObj.fun_main!=="undefined") {
-    var i=0;
-    while (i<fun_main.varContent.FxListKey.length) {
-      //console.log(fun_main.varContent.FxListKey[i],fun_main.varContent.PrmListKey[i]);
-      eval(fun_main.varContent.FxListKey[i]+"(fun_main.varContent.PrmListKey[i])")
-      i++;
-
-    }
-    //eval(fun_main.varContent);
+    RunAction("fun_main")
   }
-  var k = 0;
   //Main
   if (typeof FxObj.Main!=="undefined") {
-    while (k<FxObj.Main.length) {
-      var MainFxName = Object.getOwnPropertyNames(FxObj.Main[k]);
-      MainFx.varContent += MainFxName+'(\''+FxObj.Main[k][MainFxName]+'\');';
-      k++;
-    }
-    console.log(MainFx.varContent);
-    eval(MainFx.varContent);
+    RunAction("Main")
   }
   //main
   if (typeof FxObj.main!=="undefined") {
-    while (k<FxObj.main.length) {
-      var mainFxName = Object.getOwnPropertyNames(FxObj.main[k]);
-      mainFx.varContent += mainFxName+'(\''+FxObj.main[k][mainFxName]+'\');';
-      k++;
-    }
-    console.log(mainFx.varContent);
-    eval(mainFx.varContent);
+    RunAction("main")
   }
 }
 
@@ -277,22 +237,22 @@ function push(obj){
 }
 
 //-----------------------------------------------------= DividePoint函数 =-----------------------------------------
-function DividePoint(str,Pct) {
+function DividePoint(Str,Pct) {
   var Reg = new RegExp(Pct,'g');
   var Pos =-1;
   var LeftStr = undefined;
   var RightStr = undefined;
 
-  while (str.search(Reg)!==-1) {
+  while (Str.search(Reg)!==-1) {
 
     var SqtLeftNum = 0;
     var SqtRightNum = 0;
     var DqtLeftNum = 0;
     var DqtRightNum = 0;
 
-    Pos = str.search(Reg);
-    LeftStr = str.slice(0,Pos);
-    RightStr = str.slice(Pos+1,str.length);
+    Pos = Str.search(Reg);
+    LeftStr = Str.slice(0,Pos);
+    RightStr = Str.slice(Pos+1,Str.length);
 
     if (LeftStr.match(/'/g)!==null) {
       SqtLeftNum = LeftStr.match(/'/g).length;
@@ -319,7 +279,28 @@ function DividePoint(str,Pct) {
       return Pos;
     }
     //@代替=
-    str = str.slice(0,Pos) + "@" + str.slice(Pos+1,str.length);
+    Str = Str.slice(0,Pos) + "@" + Str.slice(Pos+1,Str.length);
   }
   return -1;
+}
+
+//将常量处理成js的对象
+function ConstantV(Str) {
+  if (typeof Str!=="string") {
+    return -1;
+  }
+  var RtnConstant = new Object();
+  if (!isNaN(Str) && Str!=="") {
+    RtnConstant.varContent = parseFloat(Str.slice(0,Str.length));
+    RtnConstant.varType = "number";
+  } else if (Str=="True") {
+    RtnConstant.varContent = true;
+    RtnConstant.varType = "bool";
+  } else if (Str=="False") {
+    RtnConstant.varContent = false;
+    RtnConstant.varType = "bool";
+  } else {
+    return -1;
+  }
+  return RtnConstant;
 }
