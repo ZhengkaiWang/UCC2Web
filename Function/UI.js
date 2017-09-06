@@ -204,10 +204,7 @@ function SetOnTop(Str) {
     var i =1000;
     while (DividePoint(Str,',')!==-1) {
         LayObj = ucctojs(Str.slice(0,DividePoint(Str,',')));
-  //      if (Obj.getAttribute("ucctype")==="Layer") {
         LayObj.style.zIndex=i--;
-         // console.log(LayObj.style.zIndex);
-  //      }else {throwerror(Str,100)}
         Str = Str.slice(DividePoint(Str,',')+1,Str.length);
     }
 }

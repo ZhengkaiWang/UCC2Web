@@ -90,3 +90,70 @@ function New(Str) {
 function Add() {
 
 }
+
+function Move(Str){
+    Str += ',';
+    // var RtnStr = Str.slice(0,DividePoint(Str,'='));
+    // var RtnObj = ucctojs(RtnStr);
+    Str = Str.slice(DividePoint(Str,'=')+1,Str.length);
+    var sonObjArray = new Array();
+    var i=0;
+    while (DividePoint(Str,',')!==-1) {
+      sonObjArray[i] = ucctojs(Str.slice(0,DividePoint(Str,',')));
+      i++;
+      Str = Str.slice(DividePoint(Str,',')+1,Str.length);
+  }
+     var left = sonObjArray[0].offsetLeft;
+     var top = sonObjArray[0].offsetTop;
+     var width = sonObjArray[0].offsetWidth;
+     var height = sonObjArray[0].offsetHeight;
+  if (sonObjArray.length==2) {
+      console.log("hh");
+      var lastposition = new Array();
+      lastposition =  sonObjArray[1].varContent.split("-");
+      sonObjArray[0].style.left = lastposition[0]+"px";
+      sonObjArray[0].style.top = lastposition[1]+"px";
+      sonObjArray[0].style.width = lastposition[2]+"px";
+      sonObjArray[0].style.height = lastposition[3]+"px";
+
+  }else if(sonObjArray.length==3) {
+      var lastposition = new Array();
+      lastposition =  sonObjArray[1].varContent.split(sonObjArray[1].varContent);
+      sonObjArray[0].style.left = lastposition[0]+"px";
+      sonObjArray[0].style.top = lastposition[1]+"px";
+      sonObjArray[0].style.width = lastposition[2]+"px";
+      sonObjArray[0].style.height = lastposition[3]+"px";
+  }
+  else if(sonObjArray.length>=4) {
+      var lastposition = new Array();
+      lastposition =  sonObjArray[1].varContent.split(sonObjArray[2].varContent);
+      var speedleft = (lastposition[0]-left)/sonObjArray[3].varContent;
+      var speedtop = (lastposition[1]-top)/sonObjArray[3].varContent;
+      var speedwidth = (lastposition[2]-width)/sonObjArray[3].varContent;
+      var speedheight = (lastposition[3]-height)/sonObjArray[3].varContent;
+      function move1(){
+          left = left+speedleft;
+          top = top+speedtop;
+          width = width+speedwidth;
+          height = height+speedheight;
+      }
+      setInterval(move1,1);
+       var num = 1;
+       var i = setInterval(function() {
+           num++;
+           sonObjArray[0].style.left= left+"px";
+           sonObjArray[0].style.top= top+"px";
+           sonObjArray[0].style.width= width+"px";
+           sonObjArray[0].style.height= height+"px";
+           if(sonObjArray.length>=5){
+              RunAction(sonObjArray[4].varContent); 
+           }
+
+           if (num >=sonObjArray[3].varContent){
+                 clearInterval(i);
+           }
+
+       }, 1);
+  }
+
+}
