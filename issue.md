@@ -34,3 +34,6 @@
   - menu重绘
 
 - GetFileNameFromURI 重写？？
+
+- '1'除非直接使用，都会被当作number存储
+- Var1=Var2 Var2=Var3 Var3=hh so @Var1=Var2='Var3'

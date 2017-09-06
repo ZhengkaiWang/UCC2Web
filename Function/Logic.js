@@ -106,11 +106,8 @@ function For(Str) {
     var EndPos =  ucctojs(Str.slice(0,DividePoint(Str,'='))).varContent;
     var Step = 1;
   }
-  console.log(iInJsFor.varContent,StartPos,EndPos,Step);
-
   for (iInJsFor.varContent = StartPos; iInJsFor.varContent<EndPos+1; iInJsFor.varContent+=Step) {
     RunAction(Str.slice(DividePoint(Str,'=')+1,Str.length));
-    console.log(Str.slice(DividePoint(Str,'=')+1,Str.length));
   }
   iInJsFor.varContent--;
   push(iInJsFor);

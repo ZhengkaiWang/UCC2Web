@@ -41,93 +41,86 @@ function ucctojs(Str) {
       var quote = '"'
     }
 
-    //若有@
-    //"@组件id @gblvar"形式
+    //@预处理
     if(Str.search(/@/)!==-1){
-      varObj.varType = "@Str";
-      var varContentTmp = Str.slice(Str.search(/@/) + 1,Str.lastIndexOf(quote));
-      //取得到组件
-      if (window.document.getElementById(varContentTmp)!==null){
-        if (propty!==null) {
-          varObj.varContent = ucctojs(varContentTmp+'.'+propty).varContent;
-        } else {
-          varObj.varContent = ucctojs(varContentTmp).varContent;
-        }
+      var TmpStr = Str.slice(Str.search(/@/)+1,Str.lastIndexOf(quote));
+      if (typeof ucctojs(TmpStr).varContent==="string") {
+        Str = Str.replace('@'+TmpStr,ucctojs(TmpStr).varContent);
       }
-
-      //取不到组件
-      //探测变量是否存在
-      else if (eval("typeof "+varContentTmp+"!=='undefined'")) {
-        varObj.varType = "@gblvar";
-        varObj.varContent = ucctojs(varContentTmp).varContent;
-        }
-        else {
-          return throwerror(varContentTmp,1);
-        }
     }
 
-    //字符串形式
-    else {
-      varObj.varType = "String";
-      var varContentTmpStart = Str.indexOf(quote) + 1;
-      var varContentTmpEnd = Str.lastIndexOf(quote);
-      varObj.varContent = Str.slice(varContentTmpStart,varContentTmpEnd);
-    }
+    varObj.varType = "String";
+    var varContentTmpStart = Str.indexOf(quote) + 1;
+    var varContentTmpEnd = Str.lastIndexOf(quote);
+    varObj.varContent = Str.slice(varContentTmpStart,varContentTmpEnd);
+
     if (typeof ConstantV(varObj.varContent)==="object") {
       //常量处理
       varObj = ConstantV(varObj.varContent);
     }
   }
 
-    //组件id形式
-    //window.document.getElementById(Str)即取址操作
-    //?.caption直接忽略默认操作
-  else if(window.document.getElementById(Str.slice(0,point))!==null){
-    varObj = window.document.getElementById(Str.slice(0,point));
-    varObj.varType = "toolId";
-    if (propty===null) {
-      switch (varObj.getAttribute("ucctype")) {
-        case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
-        case "Label" : varObj.varContent = varObj.innerText; break;
-        case "TextBox" : varObj.varContent = varObj.value; break;
-        default: break;
-      }
-    } else {
-      //console.log(Str+" default propty");
-      //此处补全
-      switch (varObj.getAttribute("ucctype")) {
-        case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
-        case "Label" : varObj.varContent = varObj.innerText; break;
-        case "TextBox" : varObj.varContent = varObj.value; break;
-        default: break;
-      }
-      if (propty=="Forecolor") {
-        varObj.varContent = varObj.style.color;
-        varObj.varType = "toolId_Forecolor";
-      }
-    }
-    //防止空元素无法执行
-    if (typeof ConstantV(varObj.varContent)==="object") {
-      //常量处理
-      varObj.varContent = ConstantV(varObj.varContent).varContent;
-    }
-  }
-
-    //全局变量形式
-    else{
-      if(Str.search(/@/)!==-1){
+  else {
+    //不彻底预处理
+    if(Str.search(/@/)!==-1){
+      var TmpStr = Str.slice(Str.search(/@/)+1,Str.length);
+      if (typeof ucctojs(TmpStr).varContent==="string" && Str.search(/@/)!==0) {
+        Str = Str.replace('@'+TmpStr,ucctojs(TmpStr).varContent);
+      } else {
         varObj.varContent = ucctojs(Str.slice(1,Str.length)).varContent;
         varObj.varType = "@Var";
-      } else if(eval("typeof "+Str+"==='object'")){
-        varObj = eval(Str);
-        varObj.varType = "gblVar";
-      } else if (typeof ConstantV(Str)==="object") {
-        //常量处理
-        varObj = ConstantV(Str);
-      } else {
-        throwerror(Str,2);
+        return varObj;
       }
     }
+    //组件id形式
+    //?.caption直接忽略默认操作
+    if(window.document.getElementById(Str.slice(0,point))!==null){
+      varObj = window.document.getElementById(Str.slice(0,point));
+      varObj.varType = "toolId";
+      if (propty===null) {
+        switch (varObj.getAttribute("ucctype")) {
+          case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
+          case "Label" : varObj.varContent = varObj.innerText; break;
+          case "TextBox" : varObj.varContent = varObj.value; break;
+          default: break;
+        }
+      } else {
+        //console.log(Str+" default propty");
+        //此处补全
+        switch (varObj.getAttribute("ucctype")) {
+          case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
+          case "Label" : varObj.varContent = varObj.innerText; break;
+          case "TextBox" : varObj.varContent = varObj.value; break;
+          default: break;
+        }
+        if (propty=="Forecolor") {
+          varObj.varContent = varObj.style.color;
+          varObj.varType = "toolId_Forecolor";
+        }
+      }
+      //防止空元素无法执行
+      if (typeof ConstantV(varObj.varContent)==="object") {
+        //常量处理
+        varObj.varContent = ConstantV(varObj.varContent).varContent;
+      }
+    }
+
+      //全局变量形式
+      else{
+        if(Str==="" || Str.search(/[`~!@#$^&*()+=|\＼\[\]\{\}:;'\,.<>/?]/)!==-1){
+           varObj.varContent = Str;
+           varObj.varType = "特殊字符";
+        } else if(eval("typeof "+Str+"==='object'")){
+          varObj = eval(Str);
+          varObj.varType = "gblVar";
+        } else if (typeof ConstantV(Str)==="object") {
+          //常量处理
+          varObj = ConstantV(Str);
+        } else {
+          throwerror(Str,2);
+        }
+      }
+  }
   return varObj;
 }
 
