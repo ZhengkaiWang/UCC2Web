@@ -79,6 +79,7 @@ function DB(str) {
 
 //-----------------------------------------------------= BindingDataTo函数 =-----------------------------------------
 function BindingDataTo(str) {
+  console.log(str);
   var RtnValue = str.slice(0,str.search(/[^=]=[^=]/)+1);
   str = str.slice(str.search(/[^=]=[^=]/)+2,str.length);
 

@@ -146,7 +146,7 @@ function Move(Str){
            sonObjArray[0].style.width= width+"px";
            sonObjArray[0].style.height= height+"px";
            if(sonObjArray.length>=5){
-              RunAction(sonObjArray[4].varContent); 
+              RunAction(sonObjArray[4].varContent);
            }
 
            if (num >=sonObjArray[3].varContent){

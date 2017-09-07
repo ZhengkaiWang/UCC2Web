@@ -82,7 +82,13 @@ function ucctojs(Str) {
       varObj.varType = "toolId";
       if (propty===null) {
         switch (varObj.getAttribute("ucctype")) {
-          case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
+          case "ComboBox" :
+          if (varObj.selectedIndex!==-1) {
+            varObj.varContent = varObj.options[varObj.selectedIndex].text;
+          } else {
+            varObj.varContent="";
+          }
+          break;
           case "Label" : varObj.varContent = varObj.innerText; break;
           case "TextBox" : varObj.varContent = varObj.value; break;
           default: break;
@@ -91,7 +97,13 @@ function ucctojs(Str) {
         //console.log(Str+" default propty");
         //此处补全
         switch (varObj.getAttribute("ucctype")) {
-          case "ComboBox" : varObj.varContent = varObj.options[varObj.selectedIndex].text; break;
+          case "ComboBox" :
+          if (varObj.selectedIndex!==-1) {
+            varObj.varContent = varObj.options[varObj.selectedIndex].text;
+          } else {
+            varObj.varContent="";
+          }
+          break;
           case "Label" : varObj.varContent = varObj.innerText; break;
           case "TextBox" : varObj.varContent = varObj.value; break;
           default: break;
@@ -223,7 +235,11 @@ function push(obj){
   if(obj.varType==="toolId")
   {
     switch (obj.getAttribute("ucctype")) {
-      case "ComboBox" : obj.options[obj.selectedIndex].text = obj.varContent; break;
+      case "ComboBox" :
+      if (obj.selectedIndex!==-1) {
+        obj.options[obj.selectedIndex].text = obj.varContent
+      }
+      break;
       case "Label" : obj.innerText = obj.varContent; break;
       case "TextBox" : obj.value = obj.varContent; break;
       default: break;
