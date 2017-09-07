@@ -19,6 +19,9 @@
 //传参方式 Object
 //均按一个单引号处理
 
+//常量处理存在未处理bug
+//@预处理存在未处理bug
+
 function ucctojs(Str) {
   Str = Str.trim();
 
@@ -96,6 +99,10 @@ function ucctojs(Str) {
         if (propty=="Forecolor") {
           varObj.varContent = varObj.style.color;
           varObj.varType = "toolId_Forecolor";
+        }
+        if (propty=="Left") {
+          varObj.varContent = varObj.style.left;
+          varObj.varType = "toolId_Left";
         }
       }
       //防止空元素无法执行
@@ -230,6 +237,9 @@ function push(obj){
     if (obj.varContent===16777215) {
       obj.style.color = "white"
     }
+  }
+  if (obj.varType==="toolId_Left") {
+    obj.style.left = obj.varContent+'px';
   }
 }
 
