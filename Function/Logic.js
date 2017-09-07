@@ -22,13 +22,10 @@ function Case(Str) {
     }
 
   if (eval("BoolLeftObj.varContent"+RealLogic+"BoolRightObj.varContent")) {
-    RunAction(TrueAction)
+    RunAction(TrueAction);
   } else {
-    if (FalseAction!=="") {
-      RunAction(FalseAction)
-    }
+    RunAction(FalseAction);
   }
-
 }
 
 //-----------------------------------------------------= IF =-----------------------------------------
@@ -103,6 +100,9 @@ function For(Str) {
 }
 
 function RunAction(Str) {
+  if (Str.trim()==="") {
+    return null;
+  }
   if (Str.indexOf(':')!==-1) {
     eval(Str.slice(0,DividePoint(Str,':'))+"(Str.slice(DividePoint(Str,':')+1,Str.length))");
   } else {

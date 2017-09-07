@@ -313,7 +313,7 @@ function ConstantV(Str) {
     return -1;
   }
   var RtnConstant = new Object();
-  if (!isNaN(Str) && Str!=="") {
+  if (!isNaN(Str) && Str.trim()!=="") {
     RtnConstant.varContent = parseFloat(Str);
     RtnConstant.varType = "number";
   } else if (Str=="True") {

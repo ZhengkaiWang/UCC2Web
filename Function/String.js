@@ -3,7 +3,8 @@ function LinkString(str) {
 
   var RtnStr = str.slice(0,DividePoint(str,'='));
   var RtnObj = ucctojs(RtnStr);
-  str = str.slice(DividePoint(str,'=')+1,str.length);
+  var LinkSymbol = ucctojs(str.slice(DividePoint(str,'=')+1,DividePoint(str,',')))
+  str = str.slice(DividePoint(str,',')+1,str.length);
 
   var sonStrArray = new Array();
   var sonObjArray = new Array();
@@ -11,7 +12,7 @@ function LinkString(str) {
   RtnObj.varContent="";
   while (str.search(/,/)!==-1) {
     sonObjArray[i] = ucctojs(str.slice(0,DividePoint(str,',')));
-    RtnObj.varContent += sonObjArray[i].varContent
+    RtnObj.varContent += (sonObjArray[i].varContent + LinkSymbol.varContent)
     i++;
     str = str.slice(DividePoint(str,',')+1,str.length);
   }
@@ -19,6 +20,7 @@ function LinkString(str) {
   RtnObj.varContent += sonObjArray[i].varContent;
   push(RtnObj);
 }
+
 //js的函数语句处理形式为：GetAsc:'asefsd','-';结果与ucc中的GetAsc:asefsd,-;结果
  function GetAsc(Str){
     Str += ',';
