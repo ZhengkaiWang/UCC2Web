@@ -24,7 +24,9 @@ function Case(Str) {
   if (eval("BoolLeftObj.varContent"+RealLogic+"BoolRightObj.varContent")) {
     RunAction(TrueAction)
   } else {
-    RunAction(FalseAction)
+    if (FalseAction!=="") {
+      RunAction(FalseAction)
+    }
   }
 
 }
