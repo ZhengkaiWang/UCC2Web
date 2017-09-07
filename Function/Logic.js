@@ -15,29 +15,16 @@ function Case(Str) {
   var BoolRightObj = ucctojs(Str.slice(DividePoint(Str,Logic)+Logic.length,DividePoint(Str,"Then")));
   if (DividePoint(Str,"Else")!==-1) {
     var TrueAction = Str.slice(DividePoint(Str,"Then")+5,DividePoint(Str,"Else"));
-    var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
-    var TrueActionPrm = TrueAction.slice(DividePoint(TrueAction,':')+1,TrueAction.length);
     var FalseAction = Str.slice(DividePoint(Str,"Else")+5,Str.length);
-    var FalseActionFx = FalseAction.slice(0,DividePoint(FalseAction,':'));
-    var FalseActionPrm = FalseAction.slice(DividePoint(FalseAction,':')+1,FalseAction.length);
   } else {
     var TrueAction = Str.slice(DividePoint(Str,"Then")+5,Str.length);
-    var TrueActionFx = TrueAction.slice(0,DividePoint(TrueAction,':'));
-    var TrueActionPrm = TrueAction.slice(DividePoint(TrueAction,':')+1,TrueAction.length);
     var FalseAction = "";
-    var FalseActionFx = "";
-    var FalseActionPrm = "";
     }
 
-  TrueActionPrm = TrueActionPrm.replace(/'/g,"\\'");
-  FalseActionPrm = FalseActionPrm.replace(/"/g,'\\"');
-
-  //console.log(BoolLeftObj.varContent+RealLogic+BoolRightObj.varContent);
   if (eval("BoolLeftObj.varContent"+RealLogic+"BoolRightObj.varContent")) {
-    //console.log(TrueActionFx+'("'+TrueActionPrm+'")');
-    eval(TrueActionFx+'("'+TrueActionPrm+'")')
+    RunAction(TrueAction)
   } else {
-    eval(FalseActionFx+'("'+FalseActionPrm+'")')
+    RunAction(FalseAction)
   }
 
 }
