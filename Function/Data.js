@@ -67,8 +67,56 @@ function DB(str) {
   };
 
   function DBAccess() {
+    console.log('DBAccess Start...');
+    var serverNameStr = str.slice(0,str.search(/,/));
+    str = str.slice(str.search(/,/)+1,str.length);
+    var DBNameStr = str.slice(0,str.search(/,/));
+    str = str.slice(str.search(/,/)+1,str.length);
+    var userNameStr = str.slice(0,str.search(/,/));
+    str = str.slice(str.search(/,/)+1,str.length);
+    var passwordStr = str.slice(0,str.search(/,/));
+    str = str.slice(str.search(/,/)+1,str.length);
+    var SQLStr = str.slice(str.search(/SQL/)+4, str.length);
+
+    var typePostStr = "typeStr="+typeStr;
+    var serverNamePostStr = "serverName="+serverNameStr;
+    var DBNamePostStr = "DBName="+DBNameStr;
+    var userNamePostStr = "userName="+userNameStr;
+    var passwordPostStr = "passwordStr="+passwordStr;
+    var SQLPostStr = "SQLStr="+SQLStr;
+
+    var postStr = typePostStr+'&'+serverNamePostStr+'&'+DBNamePostStr+'&'+userNamePostStr+'&'+passwordPostStr+'&'+SQLPostStr;
+
+    //ajax
+    var DBrequest = new XMLHttpRequest();
+    var DBresponse;
+    var Obj = ucctojs(RtnValue);
+
+    //监听状态的回调函数
+    DBrequest.onreadystatechange = function(){
+      if(DBrequest.readyState===4){
+        if(DBrequest.status===200){
+          console.log('readyState:4 status:200 OK \najax Post success');
+          DBresponse = DBrequest.responseText;
+          //JSON化
+          DBresponse = JSON.parse(DBresponse);
+          console.log(DBresponse);
+          Obj.varType = "JSON";
+          Obj.varContent = DBresponse;
+        }else {
+          console.error(DBrequest.statusText);
+        }
+      }
+    };
+
+    DBrequest.open('POST', 'http://u2w/Function/Access.php', false); //同步加载 保证串行执行
+    DBrequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // 发送HTTP请求
+    DBrequest.send(postStr);
+    console.log('...DBAccess Finished');
 
   };
+
   function DBExcel() {
 
   };
