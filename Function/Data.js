@@ -109,7 +109,7 @@ function DB(str) {
       }
     };
 
-    DBrequest.open('POST', 'http://u2w/Function/Access.php', false); //同步加载 保证串行执行
+    DBrequest.open('POST', 'http://u2w/Function/DBAccess.php', false); //同步加载 保证串行执行
     DBrequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     // 发送HTTP请求
     DBrequest.send(postStr);

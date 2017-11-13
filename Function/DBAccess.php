@@ -8,16 +8,16 @@ $userNameRcvStr = $_POST['userName'];
 $passwordRcvStr = $_POST['passwordStr'];
 $SQLRcvStr = $_POST['SQLStr'];
 
-echo $SQLRcvStr;
 //连接数据库
 //$mysqli = new mysqli($serverNameRcvStr, $userNameRcvStr,$passwordRcvStr,$DBNameRcvStr);
+
 $OdbcConn = odbc_connect("SJ","","" );//连接数据源
 
 //查询
 //$mysqli->query("set names utf8");
 //$SQLRcvStr = "SELECT * FROM t0002";
-$query = $SQLRcvStr;
-$result =odbc_exec($OdbcConn,$query);
+$SQL = iconv('utf-8','gbk',$SQLRcvStr);
+$result =odbc_exec($OdbcConn,$SQL);
 $arr = array();
 
 while (odbc_fetch_array($result)) {
