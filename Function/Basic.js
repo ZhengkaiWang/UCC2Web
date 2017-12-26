@@ -66,13 +66,18 @@ function ucctojs(Str) {
   else {
     //不彻底预处理
     if(Str.search(/@/)!==-1){
-      var TmpStr = Str.slice(Str.search(/@/)+1,Str.length);
+      var TmpStr = Str.slice(Str.search(/@/)+1,point);
       if (typeof ucctojs(TmpStr).varContent==="string" && Str.search(/@/)!==0) {
         Str = Str.replace('@'+TmpStr,ucctojs(TmpStr).varContent);
       } else {
-        varObj.varContent = ucctojs(Str.slice(1,Str.length)).varContent;
-        varObj.varType = "@Var";
-        return varObj;
+        if (typeof ucctojs(TmpStr).varContent==="number") {
+          console.log(Str);
+          Str = Str.replace('@'+TmpStr,ucctojs(TmpStr).varContent);
+        } else {
+          varObj.varContent = ucctojs(Str.slice(1,Str.length)).varContent;
+          varObj.varType = "@Var";
+          return varObj;
+        }
       }
     }
     //组件id形式
@@ -115,6 +120,10 @@ function ucctojs(Str) {
         if (propty=="Left") {
           varObj.varContent = varObj.style.left;
           varObj.varType = "toolId_Left";
+        }
+        if (propty=="Memo") {
+          varObj.varContent = null;
+          varObj.varType = "toolId_Memo";
         }
       }
       //防止空元素无法执行

@@ -14,16 +14,17 @@ $SQLRcvStr = $_POST['SQLStr'];
 $OdbcConn = odbc_connect("SJ","","" );//连接数据源
 
 //查询
-//$mysqli->query("set names utf8");
-//$SQLRcvStr = "SELECT * FROM t0002";
 $SQL = iconv('utf-8','gbk',$SQLRcvStr);
 $result =odbc_exec($OdbcConn,$SQL);
 $arr = array();
 
-while (odbc_fetch_array($result)) {
+ do{
    $row=odbc_fetch_array($result);
-   array_push($arr,$row);
- }
+   if($row!=false){
+     array_push($arr,$row);
+   }
+ }while ($row);
+
 $arr1 = eval('return '.iconv('gbk','utf-8',var_export($arr,true).';'));
 $str = json_encode($arr1,JSON_UNESCAPED_UNICODE);
 echo $str;

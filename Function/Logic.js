@@ -100,6 +100,7 @@ function For(Str) {
 }
 
 function RunAction(Str) {
+  console.log(Str);
   if (Str.trim()==="") {
     return null;
   }
